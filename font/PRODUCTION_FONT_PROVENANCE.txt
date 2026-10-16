@@ -1,0 +1,33 @@
+THE LAST — CP-01A.2 PRODUCTION FONT PROVENANCE
+Audit date: 2026-10-16 (Asia/Bangkok)
+
+Approved byte-preserved production files:
+
+- BricolageGrotesque[opsz,wdth,wght].woff2
+  Source before cleanup: font/bricolage-main/fonts/webfonts/BricolageGrotesque[opsz,wdth,wght].woff2
+  SHA-256: B51A8EBD169637E47CB7DB430431AB3E122D2F09B03EE2A03EA06F4CB46F1A8E
+  License: licenses/bricolage-OFL.txt
+
+- Newsreader[opsz,wght].woff2
+  Source before cleanup: font/Newsreader-master/fonts/variable/woff2/Newsreader[opsz,wght].woff2
+  SHA-256: 1FAA3380AC0E87E057B180E03FD94BD708A612AFB67D2590677BE4508909FAE9
+  License: licenses/newsreader-OFL.txt
+
+- Newsreader-Italic[opsz,wght].woff2
+  Source before cleanup: font/Newsreader-master/fonts/variable/woff2/Newsreader-Italic[opsz,wght].woff2
+  SHA-256: D184D5E6A967FFEA109D9F99FA245ECCBFF221E27F30BFD7D6FDB2940FCC6265
+  License: licenses/newsreader-OFL.txt
+
+- Shantell_Sans-Normal-Regular.woff2
+  Source before cleanup: font/shantell-sans-main/fonts/Shantell Sans/Web/Static/Shantell_Sans-Normal-Regular.woff2
+  SHA-256: 679B07D8ECEDBD0A998E8AC6BD144E004EBA350C691FFD2A0E13FA41693CFEB9
+  License: licenses/shantell-sans-OFL.txt
+
+License copyright notices:
+
+- Bricolage: Copyright 2022 The Bricolage Grotesque Project Authors (https://github.com/ateliertriay/bricolage)
+- Newsreader: Copyright 2020 The Newsreader Project Authors (http://github.com/productiontype/Newsreader)
+- Shantell Sans: Copyright 2022 The Shantell Sans Project Authors (https://github.com/arrowtype/shantell-sans)
+- Newsreader trademark notice preserved at licenses/newsreader-trademarks.md.
+
+The original three upstream distributions were backed up outside the project before cleanup and verified byte-for-byte before deletion.
