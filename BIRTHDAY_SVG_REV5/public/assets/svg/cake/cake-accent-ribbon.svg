@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" id="d11-root" aria-hidden="true" focusable="false">
+    <path id="d11-band" d="M71.22,192 A128.78,31.5 0 0 0 328.78,192 L327.88,205 A127.88,31.5 0 0 1 72.12,205 Z" fill="#A79DCD"/>
+    <path id="d11-band-shade" d="M72.12,205 A127.88,31.5 0 0 0 327.88,205 L327.88,209 A127.88,31.5 0 0 1 72.12,209 Z" fill="#2C282A" fill-opacity="0.14"/>
+    <path id="d11-tail-a" d="M159,232.74 C157,236.74 155,239.74 153,242.74 L157.5,241.74 L159,245.24 C162,239.74 164,236.74 165,232.74 Z" fill="#A79DCD" stroke="#2C282A" stroke-opacity="0.20" stroke-width="0.9" stroke-linejoin="round"/>
+    <path id="d11-tail-b" d="M165,232.74 C166,236.74 168,239.74 172,242.24 L168,241.74 L167.5,245.24 C164,239.74 162,236.74 161,232.74 Z" fill="#A79DCD" stroke="#2C282A" stroke-opacity="0.20" stroke-width="0.9" stroke-linejoin="round"/>
+    <path id="d11-knot" d="M154,224.74 C158,217.74 163,220.74 164,227.74 C166,219.74 172,217.74 175,225.74 C176,232.74 169,233.74 165,230.74 C161,234.74 153,232.74 154,224.74 Z" fill="#A79DCD" stroke="#2C282A" stroke-opacity="0.28" stroke-width="1" stroke-linejoin="round"/>
+    <circle id="d11-knot-centre" cx="164" cy="228.24" r="2.4" fill="#2C282A" fill-opacity="0.22"/>
+</svg>

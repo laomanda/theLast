@@ -1,0 +1,1818 @@
+{
+  "schemaVersion": 2,
+  "library": "Birthday Experience SVG asset kit (candidate production, REV 4 targeted correction)",
+  "root": "public/assets/svg",
+  "sources": "DESIGN_SYSTEM.md v1.0 and LOCKED fragments (ICON_SVG, SHAPE_PATTERN, CAKE, VAULT, MATERIAL, DEPTH, MOTION, COLOR, PHOTO, SCENE_BY_SCENE)",
+  "generator": "build_svg_assets.py (geometry generated in code; no raster content)",
+  "assets": [
+    {
+      "id": "A01",
+      "filename": "offset-loop-primary.svg",
+      "relativePath": "public/assets/svg/signature/offset-loop-primary.svg",
+      "family": "signature",
+      "purpose": "Primary Offset Loop: a coral run (about 274 deg) that ends in a crisp cut, then a periwinkle run that continues one lane inward across the break and laps the loop start. The lane step is the deliberate interruption.",
+      "scenes": [
+        "S01",
+        "S02",
+        "S03",
+        "S08"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 256 256",
+      "colors": [
+        "color.confidentPeriwinkle #8794CC",
+        "color.mutedCoral #E67A6B"
+      ],
+      "colorsUsed": [
+        "#8794CC",
+        "#E67A6B"
+      ],
+      "animationTargets": "a01-outer then a01-inner: stroke-dashoffset draw, pathLength=100 (GSAP, scene-owned)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "48px to 256px",
+      "bytes": 3798,
+      "notes": "REV 4. Stroke-only, butt caps, pathLength=100, ids a01-outer then a01-inner. Radius carries a 4 percent organic modulation shared by both lanes. Stroke widths 12 and 9 for 48 px legibility.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "8c48c67974e052a785fa75c920ca4ef832377ba3794e124f95fb9c355eac1888",
+      "sourceSha256": "8195497c6e5108b94334be5e32a0909a26942c8428ee45bb509b15b8659dba88",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/signature/offset-loop-primary.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "8195497c6e5108b94334be5e32a0909a26942c8428ee45bb509b15b8659dba88",
+      "sha256Verified": true
+    },
+    {
+      "id": "A02",
+      "filename": "offset-loop-open.svg",
+      "relativePath": "public/assets/svg/signature/offset-loop-open.svg",
+      "family": "signature",
+      "purpose": "Open-variant Offset Loop: one lopsided organic contour (asymmetric bump+pinch, not an ellipse) traced mostly in coral (~232deg) with an explicit 20deg gap, then a short periwinkle accent (~92deg) continuing from the gap and ending in open negative space -- a single interrupted gesture, not a second concentric loop.",
+      "scenes": [
+        "S02",
+        "S03",
+        "S07"
+      ],
+      "status": "REV5-correction-1: asymmetric single-gesture geometry (technical validation only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (geometry substantially revised)",
+      "auditScore": null,
+      "viewBox": "0 0 256 256",
+      "colors": [
+        "color.mutedCoral #E67A6B",
+        "color.confidentPeriwinkle #8794CC"
+      ],
+      "colorsUsed": [
+        "#E67A6B",
+        "#8794CC"
+      ],
+      "animationTargets": "a02-outer then a02-inner: stroke-dashoffset draw, pathLength=100 (GSAP, scene-owned)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "48px to 256px",
+      "bytes": 1913,
+      "notes": "REV5-correction-1: full geometry rebuild, 3rd construction attempt in this session. Attempts 1-2 (parametric ellipse families) rendered as two nested/concentric loops despite different radii -- rejected after rendering, not shipped. This construction was rendered at 48/128/256px with cairosvg and visually confirmed to read as one gesture with a real gap, not a spinner. Not independently/owner-reviewed.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "REV5-correction-1",
+      "assetRevision": "REV5-correction-1",
+      "lastChangedIn": "REV5-correction-1",
+      "previousSha256_rev3": "3cbc7cfb50ec5dd704fbc1f2ee7d3f807fc4e7701a0a537d880bac872959e4a2",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "sha256": "9817f8a81ba819cb97ba6a4cfa55aa18d9e45bd1410639fcf5f46b29e4bbd84b",
+      "publicUrl": "/assets/svg/signature/offset-loop-open.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "previousSha256_rev4": "aa48736dd184c878a89aa56f240abf3a963d51c558e59d0273c1165d7e13c7fe",
+      "previousSha256_rev5": "3e3f7dd04d8e36223e02421ce5423b8c1853f6fba55f2901415483eb6e6cbe3a"
+    },
+    {
+      "id": "A03",
+      "filename": "offset-loop-fragment.svg",
+      "relativePath": "public/assets/svg/signature/offset-loop-fragment.svg",
+      "family": "signature",
+      "purpose": "Cropped, partial signature contour for editorial framing with generous negative space.",
+      "scenes": [
+        "S03",
+        "S04",
+        "S07"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.6,
+      "viewBox": "0 0 256 256",
+      "colors": [
+        "color.confidentPeriwinkle #8794CC"
+      ],
+      "colorsUsed": [
+        "#8794CC"
+      ],
+      "animationTargets": "none required; may be masked by a parent clip",
+      "renderMode": "external-svg",
+      "recommendedSize": "64px to 240px",
+      "bytes": 1219,
+      "notes": "Only the arc is drawn; the ends are open so it reads as a fragment, not a logo.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "9e74a9c59af08be80ab4b21aaed595ffcb7bc3ef0e219fc4a3efb4c116a7e571",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/signature/offset-loop-fragment.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "9e74a9c59af08be80ab4b21aaed595ffcb7bc3ef0e219fc4a3efb4c116a7e571",
+      "sha256Verified": true
+    },
+    {
+      "id": "A04",
+      "filename": "offset-loop-echo.svg",
+      "relativePath": "public/assets/svg/signature/offset-loop-echo.svg",
+      "family": "signature",
+      "purpose": "Quiet afterimage: a hairline taper on a smaller radius, covering about 150 degrees with its own small offset cut. Single shape, no concentric repetition.",
+      "scenes": [
+        "S04",
+        "S08"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 86.3,
+      "viewBox": "0 0 256 256",
+      "colors": [
+        "color.dustyLavender #A79DCD"
+      ],
+      "colorsUsed": [
+        "#A79DCD"
+      ],
+      "animationTargets": "opacity fade-in",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "96px to 240px",
+      "bytes": 2230,
+      "notes": "Revision 2. Lavender, intended for the Plum/Graphite world or a mid-tone surface. On Ivory it is intentionally faint (2.24:1).",
+      "intendedBackground": "Deep Plum (hidden) or mid-tone; faint on Ivory by design",
+      "revision": "rev2 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev2",
+      "assetRevision": "rev2",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "d45622883f1db730ff33d8bbe52c6ddb652b9a6f846f3e46cb3b41fd2fedfc69",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/signature/offset-loop-echo.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "d45622883f1db730ff33d8bbe52c6ddb652b9a6f846f3e46cb3b41fd2fedfc69",
+      "sha256Verified": true
+    },
+    {
+      "id": "A05",
+      "filename": "offset-loop-segmented.svg",
+      "relativePath": "public/assets/svg/signature/offset-loop-segmented.svg",
+      "family": "signature",
+      "purpose": "Mechanical derivative: seven arcs sharing the primary's interruption angle, alternating offset, one champagne segment beside the cut.",
+      "scenes": [
+        "S09",
+        "S10"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.5,
+      "viewBox": "0 0 256 256",
+      "colors": [
+        "color.dustyLavender #A79DCD",
+        "color.softChampagne #E6D4AC"
+      ],
+      "colorsUsed": [
+        "#A79DCD",
+        "#E6D4AC"
+      ],
+      "animationTargets": "segments index in sequence (per-segment transform, GSAP-owned)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "48px to 240px",
+      "bytes": 2752,
+      "notes": "Revision 2. Recoloured from Warm Graphite (1.05:1 on Plum) to Dusty Lavender (5.38:1). Champagne on one segment only.",
+      "intendedBackground": "Deep Plum / Warm Graphite (hidden world)",
+      "revision": "rev2 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev2",
+      "assetRevision": "rev2",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "da8f6ba0eb2a261d7fee4a97ce6b3337049cae7b4d46fa6aeb36d2ed6b09d2d5",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/signature/offset-loop-segmented.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "da8f6ba0eb2a261d7fee4a97ce6b3337049cae7b4d46fa6aeb36d2ed6b09d2d5",
+      "sha256Verified": true
+    },
+    {
+      "id": "B01",
+      "filename": "editorial-frame-open.svg",
+      "relativePath": "public/assets/svg/editorial/editorial-frame-open.svg",
+      "family": "editorial",
+      "purpose": "Partial editorial frame with four unfinished corner brackets of unequal length, for invitation and composition anchoring.",
+      "scenes": [
+        "S02",
+        "S04",
+        "S07",
+        "S08",
+        "S11",
+        "S12"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.6,
+      "viewBox": "0 0 240 300",
+      "colors": [
+        "color.deepInk #2C282A"
+      ],
+      "colorsUsed": [
+        "#2C282A"
+      ],
+      "animationTargets": "none; may clip-reveal (T2) on scene entry",
+      "renderMode": "external-svg",
+      "recommendedSize": "120px to 240px",
+      "bytes": 709,
+      "notes": "Corners are deliberately uneven. Ink only, no fill, so it never covers content.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "9a300d5cec12acfb11efd69f9beea89ddeb14b06f55faaf40249f38be668a0ac",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/editorial/editorial-frame-open.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "9a300d5cec12acfb11efd69f9beea89ddeb14b06f55faaf40249f38be668a0ac",
+      "sha256Verified": true
+    },
+    {
+      "id": "B02",
+      "filename": "editorial-frame-portrait.svg",
+      "relativePath": "public/assets/svg/editorial/editorial-frame-portrait.svg",
+      "family": "editorial",
+      "purpose": "Asymmetric portrait framing: four broken edges around an unfilled window so the photograph is never covered.",
+      "scenes": [
+        "S04"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 89.6,
+      "viewBox": "0 0 240 300",
+      "colors": [
+        "color.mutedCoral #E67A6B"
+      ],
+      "colorsUsed": [
+        "#E67A6B"
+      ],
+      "animationTargets": "none; frame may scale with the photo container",
+      "renderMode": "external-svg",
+      "recommendedSize": "160px to 320px",
+      "bytes": 713,
+      "notes": "Stroke only, window kept clear. Variable aspect: frame is placed by the layout container, not stretched (use preserveAspectRatio default). Does not cover the face when correctly placed.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "4a520ac9e73bec6eac5097164bef13442ba49066c8f820cba93947c6f8e546b4",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/editorial/editorial-frame-portrait.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "4a520ac9e73bec6eac5097164bef13442ba49066c8f820cba93947c6f8e546b4",
+      "sha256Verified": true
+    },
+    {
+      "id": "B03",
+      "filename": "editorial-cut-soft.svg",
+      "relativePath": "public/assets/svg/editorial/editorial-cut-soft.svg",
+      "family": "editorial",
+      "purpose": "Soft-edged compositional cut with one diagonal chamfer, usable as a mask or sectional boundary.",
+      "scenes": [
+        "S04",
+        "S07"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.2,
+      "viewBox": "0 0 240 240",
+      "colors": [
+        "color.editorialMist #D8D2C9"
+      ],
+      "colorsUsed": [
+        "#D8D2C9"
+      ],
+      "animationTargets": "clip-path reveal via GSAP (external geometry reference)",
+      "renderMode": "external-svg",
+      "recommendedSize": "96px to 240px",
+      "bytes": 250,
+      "notes": "Solid Editorial Mist. Can be referenced as a clipPath in inline use.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "2a7d0ecef3bc6437680e2e2af43af81a236669bd98f3437bdd7a072f75be6b09",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/editorial/editorial-cut-soft.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "2a7d0ecef3bc6437680e2e2af43af81a236669bd98f3437bdd7a072f75be6b09",
+      "sha256Verified": true
+    },
+    {
+      "id": "B04",
+      "filename": "soft-mass-asymmetric.svg",
+      "relativePath": "public/assets/svg/editorial/soft-mass-asymmetric.svg",
+      "family": "editorial",
+      "purpose": "Structural mass with an asymmetric waist: a broad lower-left lobe and a smaller upper-right lobe. Backing surface only.",
+      "scenes": [
+        "S03",
+        "S05"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 84.2,
+      "viewBox": "0 0 320 240",
+      "colors": [
+        "color.softApricot #ECA06E"
+      ],
+      "colorsUsed": [
+        "#ECA06E"
+      ],
+      "animationTargets": "none; may morph between two states on transitions",
+      "renderMode": "external-svg",
+      "recommendedSize": "160px to 320px",
+      "bytes": 339,
+      "notes": "REV 3. Waisted two-lobe form instead of a rounded rectangle. Still a single solid fill.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev3 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev3",
+      "assetRevision": "rev3",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "914cffd59bccf05779ec2dace3b8c7d14733f3456f5baceea8b87059bc85e22e",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev3 membership per the independent REV 3 audit (REV 2 vs REV 3 byte comparison).",
+      "publicUrl": "/assets/svg/editorial/soft-mass-asymmetric.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "914cffd59bccf05779ec2dace3b8c7d14733f3456f5baceea8b87059bc85e22e",
+      "sha256Verified": true
+    },
+    {
+      "id": "B05",
+      "filename": "flowing-form-01.svg",
+      "relativePath": "public/assets/svg/editorial/flowing-form-01.svg",
+      "family": "editorial",
+      "purpose": "Horizontal flowing editorial contour for wide compositions and transitions.",
+      "scenes": [
+        "S03",
+        "S08"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 87.6,
+      "viewBox": "0 0 360 160",
+      "colors": [
+        "color.mutedCoral #E67A6B"
+      ],
+      "colorsUsed": [
+        "#E67A6B"
+      ],
+      "animationTargets": "stroke-draw left to right",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "200px to 360px",
+      "bytes": 541,
+      "notes": "Two half-waves with round caps. Designed as one gesture, not a decorative wave border.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "91e70f5ac01de9bfc235f5e6dbfa326a134721e569df5a0861b70bc3ec26b27b",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/editorial/flowing-form-01.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "91e70f5ac01de9bfc235f5e6dbfa326a134721e569df5a0861b70bc3ec26b27b",
+      "sha256Verified": true
+    },
+    {
+      "id": "B06",
+      "filename": "flowing-form-02.svg",
+      "relativePath": "public/assets/svg/editorial/flowing-form-02.svg",
+      "family": "editorial",
+      "purpose": "Complementary flowing form with a different rhythm: two segments with a gap and a butt-capped end. Not a flip of B05.",
+      "scenes": [
+        "S07",
+        "S12"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 86.2,
+      "viewBox": "0 0 360 160",
+      "colors": [
+        "color.dustyLavender #A79DCD"
+      ],
+      "colorsUsed": [
+        "#A79DCD"
+      ],
+      "animationTargets": "stroke-draw, segment A then B",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "200px to 360px",
+      "bytes": 908,
+      "notes": "Lavender on Ivory is not a text colour (contrast 2.24:1 per DS 3.3). Used as a decorative stroke only.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "825bf693d37a4edb3e22ec827cab7f88115d279022a9d63b3bfcb3008a4a757b",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/editorial/flowing-form-02.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "825bf693d37a4edb3e22ec827cab7f88115d279022a9d63b3bfcb3008a4a757b",
+      "sha256Verified": true
+    },
+    {
+      "id": "B07",
+      "filename": "rhythm-divider.svg",
+      "relativePath": "public/assets/svg/editorial/rhythm-divider.svg",
+      "family": "editorial",
+      "purpose": "Subtle section divider: a thin rule with three descending marks, no ornamental flourish.",
+      "scenes": [
+        "S07",
+        "S12"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.8,
+      "viewBox": "0 0 240 24",
+      "colors": [
+        "color.deepInk #2C282A"
+      ],
+      "colorsUsed": [
+        "#2C282A"
+      ],
+      "animationTargets": "none",
+      "renderMode": "external-svg",
+      "recommendedSize": "160px to 240px",
+      "bytes": 692,
+      "notes": "Deliberately plain. Optimised for letter sections, not for decoration.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "92b9426509ca7a200fe187081190f7d700e7ec204811f1fb16920427568b7940",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/editorial/rhythm-divider.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "92b9426509ca7a200fe187081190f7d700e7ec204811f1fb16920427568b7940",
+      "sha256Verified": true
+    },
+    {
+      "id": "C01",
+      "filename": "celebration-arc.svg",
+      "relativePath": "public/assets/svg/celebration/celebration-arc.svg",
+      "family": "celebration",
+      "purpose": "Controlled celebratory arc with one short tick at the terminal, not a rainbow or confetti.",
+      "scenes": [
+        "S03",
+        "S05"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 86.4,
+      "viewBox": "0 0 200 120",
+      "colors": [
+        "color.softApricot #ECA06E"
+      ],
+      "colorsUsed": [
+        "#ECA06E"
+      ],
+      "animationTargets": "stroke-draw once on reveal",
+      "renderMode": "external-svg",
+      "recommendedSize": "120px to 200px",
+      "bytes": 414,
+      "notes": "Single arc, single colour.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "a652d90982ab873ead34d961a018e086ee8b544f83ec3698a6584d82d486f097",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/celebration/celebration-arc.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "a652d90982ab873ead34d961a018e086ee8b544f83ec3698a6584d82d486f097",
+      "sha256Verified": true
+    },
+    {
+      "id": "C02",
+      "filename": "celebration-burst.svg",
+      "relativePath": "public/assets/svg/celebration/celebration-burst.svg",
+      "family": "celebration",
+      "purpose": "Restrained directional burst: five rays over a 120-degree arc with varied lengths. Explicitly not a fireworks or confetti symbol.",
+      "scenes": [
+        "S03"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.6,
+      "viewBox": "0 0 200 200",
+      "colors": [
+        "color.mutedCoral #E67A6B"
+      ],
+      "colorsUsed": [
+        "#E67A6B"
+      ],
+      "animationTargets": "rays scale outward in sequence (M1-M3)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "96px to 200px",
+      "bytes": 706,
+      "notes": "Only one half-circle of rays; never a full radial burst.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "49856bac2d792d20bcf5435c0aee8a1cc9969f9b52219acf63bb0c1d53bcc42a",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/celebration/celebration-burst.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "49856bac2d792d20bcf5435c0aee8a1cc9969f9b52219acf63bb0c1d53bcc42a",
+      "sha256Verified": true
+    },
+    {
+      "id": "C03",
+      "filename": "celebration-dashes.svg",
+      "relativePath": "public/assets/svg/celebration/celebration-dashes.svg",
+      "family": "celebration",
+      "purpose": "Small rhythm of four carefully offset dash marks for a line or a divider in celebration scenes.",
+      "scenes": [
+        "S03",
+        "S06",
+        "S08"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 85.9,
+      "viewBox": "0 0 240 60",
+      "colors": [
+        "color.confidentPeriwinkle #8794CC"
+      ],
+      "colorsUsed": [
+        "#8794CC"
+      ],
+      "animationTargets": "dash-offset draw, staggered",
+      "renderMode": "external-svg",
+      "recommendedSize": "120px to 240px",
+      "bytes": 569,
+      "notes": "Four unequal dashes with varied slopes; readable as rhythm, not a dotted pattern.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "92cb40256f25acbdf0e793623b90f005adfdf3f96a9322c43c635f0a63b71b7d",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/celebration/celebration-dashes.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "92cb40256f25acbdf0e793623b90f005adfdf3f96a9322c43c635f0a63b71b7d",
+      "sha256Verified": true
+    },
+    {
+      "id": "C04",
+      "filename": "celebration-spark.svg",
+      "relativePath": "public/assets/svg/celebration/celebration-spark.svg",
+      "family": "celebration",
+      "purpose": "Distinctive micro-accent: an elongated lozenge with one offset arc. Deliberately avoids the four-point sparkle cliche.",
+      "scenes": [
+        "S05",
+        "S06",
+        "S08"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 84.4,
+      "viewBox": "0 0 120 120",
+      "colors": [
+        "color.softApricot #ECA06E",
+        "color.mutedCoral #E67A6B"
+      ],
+      "colorsUsed": [
+        "#E67A6B",
+        "#ECA06E"
+      ],
+      "animationTargets": "none; may pulse once (M1) on a selection",
+      "renderMode": "external-svg",
+      "recommendedSize": "32px to 120px",
+      "bytes": 359,
+      "notes": "Two colours only. Lozenge is asymmetric in its taper.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "13e667a64b43fceaf07906d46225087f7374574bbe1fbc013f268693dc0c6a26",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/celebration/celebration-spark.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "13e667a64b43fceaf07906d46225087f7374574bbe1fbc013f268693dc0c6a26",
+      "sha256Verified": true
+    },
+    {
+      "id": "D01",
+      "filename": "cake-body-base.svg",
+      "relativePath": "public/assets/svg/cake/cake-body-base.svg",
+      "family": "cake",
+      "purpose": "Sculpted single-tier body: a barrel sidewall with a slight outward bulge, a plate with contact shadow, and a right-side crescent shade that follows the body.",
+      "scenes": [
+        "S05",
+        "S06"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 400 300",
+      "colors": [
+        "color.deepInk #2C282A",
+        "color.editorialMist #D8D2C9"
+      ],
+      "colorsUsed": [
+        "#2C282A",
+        "#D8D2C9"
+      ],
+      "animationTargets": "none (static); S2 contact handled by parent layer",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "240px to 400px (in cake space)",
+      "bytes": 1138,
+      "notes": "REV 4. Cylinder sidewall with a slight convex wall, plate with visible edge thickness, base contact crescent, right-hand shade and base occlusion (Mist + Deep Ink only). Ids: d01-body, d01-shade, d01-base-occlusion, d01-plate, d01-cast, d01-contact.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "180eeab5c8121a12c46b9be4ef7053076c099c39c57c3a2ca8ded2813dcf4929",
+      "sourceSha256": "ad7ca0a004c47e3f022dcfede91fb62fc87a0c48632330b81d19237471470cd6",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/cake/cake-body-base.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "ad7ca0a004c47e3f022dcfede91fb62fc87a0c48632330b81d19237471470cd6",
+      "sha256Verified": true
+    },
+    {
+      "id": "D02",
+      "filename": "cake-frosting-silhouette.svg",
+      "relativePath": "public/assets/svg/cake/cake-frosting-silhouette.svg",
+      "family": "cake",
+      "purpose": "Frosting mass: a domed top face that overhangs the body, with soft rounded drips (U-lobes, no sharp teeth) and an ivory sheen on the top-left.",
+      "scenes": [
+        "S05",
+        "S06"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 400 300",
+      "colors": [
+        "color.mutedCoral #E67A6B",
+        "color.warmIvory #F6F1E8"
+      ],
+      "colorsUsed": [
+        "#E67A6B",
+        "#F6F1E8"
+      ],
+      "animationTargets": "fill colour parameterised by the frosting preset",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "240px to 400px (in cake space)",
+      "bytes": 4305,
+      "notes": "REV 4. Full top-plane ellipse (rx128, ry34, centre 200,136). Skirt hangs from the FRONT RIM arc with seven unequal soft lobes (REV 3 hung periodic lobes from a straight line). Ivory lip highlights (broken) and a soft sheen at 24-40 percent. Frosting colour is the preset.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "66d5ce8a83bb5242600667650626d2dc6c7903ed3efadf7e484279b130259946",
+      "sourceSha256": "f0d163af0772c24bdbdd404d202f9d49dc7d05487d9b92d4dc75dbddf1a5d766",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/cake/cake-frosting-silhouette.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "f0d163af0772c24bdbdd404d202f9d49dc7d05487d9b92d4dc75dbddf1a5d766",
+      "sha256Verified": true
+    },
+    {
+      "id": "D03",
+      "filename": "cake-frosting-edge.svg",
+      "relativePath": "public/assets/svg/cake/cake-frosting-edge.svg",
+      "family": "cake",
+      "purpose": "Frosting edge shading: ink-only cast shadow on the sponge below the skirt, a thin under-lip tone and a broken shoulder shade. Sits ABOVE D02 and below decorations.",
+      "scenes": [
+        "S05",
+        "S06"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 400 300",
+      "colors": [
+        "color.deepInk #2C282A"
+      ],
+      "colorsUsed": [
+        "#2C282A"
+      ],
+      "animationTargets": "none (static)",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "240px to 400px (in cake space)",
+      "bytes": 7417,
+      "notes": "REV 4. Replaces the REV 3 piped apricot rope (which read as a garland). Colour-neutral so it stays correct for every frosting preset. Built from the same boundary function as D02 (geom.py).",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "50268f95f175d4dd228197c9e11d207f6598a3777d39d83df84e40d00c90e326",
+      "sourceSha256": "5f2291d09392a9d18ce66454f742f56f2ed9fd9b35afe044fea4f849d065a10c",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/cake/cake-frosting-edge.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "5f2291d09392a9d18ce66454f742f56f2ed9fd9b35afe044fea4f849d065a10c",
+      "sha256Verified": true
+    },
+    {
+      "id": "D04",
+      "filename": "candle-body.svg",
+      "relativePath": "public/assets/svg/cake/candle-body.svg",
+      "family": "cake",
+      "purpose": "Candle body with a left-side highlight stripe and a top cap. Base centre is the anchor (20,120).",
+      "scenes": [
+        "S05",
+        "S06"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 40 126",
+      "colors": [
+        "color.confidentPeriwinkle #8794CC",
+        "color.editorialMist #D8D2C9"
+      ],
+      "colorsUsed": [
+        "#8794CC",
+        "#D8D2C9"
+      ],
+      "animationTargets": "none; instance transform set by the store",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "16px to 40px wide (in cake space)",
+      "bytes": 390,
+      "notes": "REV 4. Curved (elliptical) base so the candle sits on the top plane; highlight stripe and wax cap kept. Body colour is a preset (default Periwinkle). Intended composed scale 0.54-0.60 (REV 3 composed at 1.0, far too large).",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "4b5138341eb741a0a08b34c3ecec1cb82c7e6cf9e3817ad2919d70c284a115ba",
+      "sourceSha256": "020de9453e8222e2239a0adc6cb3133e573440256544f7a8fc8f4c4ded950f37",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/cake/candle-body.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "020de9453e8222e2239a0adc6cb3133e573440256544f7a8fc8f4c4ded950f37",
+      "sha256Verified": true
+    },
+    {
+      "id": "D05",
+      "filename": "candle-flame.svg",
+      "relativePath": "public/assets/svg/cake/candle-flame.svg",
+      "family": "cake",
+      "purpose": "Independent flame: outer teardrop plus a champagne core. Separately removable and scale/opacity animatable.",
+      "scenes": [
+        "S06"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.2,
+      "viewBox": "0 0 40 60",
+      "colors": [
+        "color.softApricot #ECA06E",
+        "color.softChampagne #E6D4AC"
+      ],
+      "colorsUsed": [
+        "#E6D4AC",
+        "#ECA06E"
+      ],
+      "animationTargets": "scale, opacity and a subtle sway on the flame group; removed on extinguish",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "16px to 40px wide (in cake space)",
+      "bytes": 376,
+      "notes": "The flame group (d05-root) must be transform-origin at its base so sway does not drift. Extinguish = remove or fade this group only.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "2c11025543a4870a845e492782e4f843db59272c64dbf8da253e6bb212df0c3d",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/cake/candle-flame.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "2c11025543a4870a845e492782e4f843db59272c64dbf8da253e6bb212df0c3d",
+      "sha256Verified": true
+    },
+    {
+      "id": "D06",
+      "filename": "candle-wick.svg",
+      "relativePath": "public/assets/svg/cake/candle-wick.svg",
+      "family": "cake",
+      "purpose": "Separate wick so the flame can disappear while the candle body stays visible.",
+      "scenes": [
+        "S06"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.6,
+      "viewBox": "0 0 40 24",
+      "colors": [
+        "color.deepInk #2C282A"
+      ],
+      "colorsUsed": [
+        "#2C282A"
+      ],
+      "animationTargets": "none",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "8px to 24px (in cake space)",
+      "bytes": 257,
+      "notes": "Wick sits between flame base and candle top: its bottom (20,20) meets the candle cap.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "e8eee65356392e98c2b74523153aac7a6c09900b31f22a1f5a6f25eeb858b68d",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/cake/candle-wick.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "e8eee65356392e98c2b74523153aac7a6c09900b31f22a1f5a6f25eeb858b68d",
+      "sha256Verified": true
+    },
+    {
+      "id": "D07",
+      "filename": "flower-bloom.svg",
+      "relativePath": "public/assets/svg/cake/flower-bloom.svg",
+      "family": "cake",
+      "purpose": "Tasteful, abstracted five-petal bloom for the cake surface. Not a cartoon flower.",
+      "scenes": [
+        "S05"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 120 120",
+      "colors": [
+        "color.dustyLavender #A79DCD",
+        "color.softChampagne #E6D4AC"
+      ],
+      "colorsUsed": [
+        "#A79DCD",
+        "#E6D4AC"
+      ],
+      "animationTargets": "petals may open on placement (M2 settle)",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "32px to 120px (in cake space)",
+      "bytes": 1377,
+      "notes": "REV 4. Five irregular rounded outer petals plus five smaller inner petals and a centre. Two colours (outer, inner) are presets. Composed at scale 0.5-0.64 with 0.70 vertical foreshortening so it lies on the top plane.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "ae4451da651154164325452832183d9dce33a002646165dd2981ff9ea088b073",
+      "sourceSha256": "924c7ba698830c46a9ba44475e58d4d6f70c9909c720269c03515e444b9f490d",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/cake/flower-bloom.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "924c7ba698830c46a9ba44475e58d4d6f70c9909c720269c03515e444b9f490d",
+      "sha256Verified": true
+    },
+    {
+      "id": "D08",
+      "filename": "flower-leaf.svg",
+      "relativePath": "public/assets/svg/cake/flower-leaf.svg",
+      "family": "cake",
+      "purpose": "Complementary leaf accent: almond shape with a faint midrib. Uses the palette, not literal green.",
+      "scenes": [
+        "S05"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 100 60",
+      "colors": [
+        "color.deepInk #2C282A",
+        "color.confidentPeriwinkle #8794CC"
+      ],
+      "colorsUsed": [
+        "#2C282A",
+        "#8794CC"
+      ],
+      "animationTargets": "none",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "24px to 100px (in cake space)",
+      "bytes": 357,
+      "notes": "REV 4. Asymmetric curved leaf with a curved rib. Composed at about 0.45-0.5, foreshortened, tucked behind the flower so it reads as attached.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "7acface283c0efc907f74770d9897967a25e060f27a83830d02a179a31b3ce36",
+      "sourceSha256": "954b3f98983fbde4135b7b89b2a263c254de0f31a88edeaee3ce7888836e412f",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/cake/flower-leaf.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "954b3f98983fbde4135b7b89b2a263c254de0f31a88edeaee3ce7888836e412f",
+      "sha256Verified": true
+    },
+    {
+      "id": "D09",
+      "filename": "cake-topper.svg",
+      "relativePath": "public/assets/svg/cake/cake-topper.svg",
+      "family": "cake",
+      "purpose": "Restrained topper: an open loop on a short stem. Carries no recipient name; no text is drawn, so personalisation stays in HTML.",
+      "scenes": [
+        "S05"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 84.4,
+      "viewBox": "0 0 120 140",
+      "colors": [
+        "color.mutedCoral #E67A6B"
+      ],
+      "colorsUsed": [
+        "#E67A6B"
+      ],
+      "animationTargets": "none; placed by the store",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "48px to 120px (in cake space)",
+      "bytes": 1121,
+      "notes": "Do not hardcode a name (DS 9.2, PRD 5.4). Any topper text is HTML overlay with length limits.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "eda9d9806019c47cf4c40fb6939e428114fbd5842a66cbb5702da0ca77f5fff6",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/cake/cake-topper.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "eda9d9806019c47cf4c40fb6939e428114fbd5842a66cbb5702da0ca77f5fff6",
+      "sha256Verified": true
+    },
+    {
+      "id": "D10",
+      "filename": "cake-accent-pearl.svg",
+      "relativePath": "public/assets/svg/cake/cake-accent-pearl.svg",
+      "family": "cake",
+      "purpose": "Minimal round decorative detail with a small highlight arc suggesting depth.",
+      "scenes": [
+        "S05"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 86.8,
+      "viewBox": "0 0 60 60",
+      "colors": [
+        "color.warmIvory #F6F1E8",
+        "color.editorialMist #D8D2C9"
+      ],
+      "colorsUsed": [
+        "#D8D2C9",
+        "#F6F1E8"
+      ],
+      "animationTargets": "none",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "10px to 24px (in cake space)",
+      "bytes": 382,
+      "notes": "Two colours (ivory and mist). Depth comes from the mist rim and highlight arc, not a gradient.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "11fa815c03f90daa85bd33baa8d6c2a8a67c431ea5c5a28e6620fbe2ec7fffe0",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/cake/cake-accent-pearl.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "11fa815c03f90daa85bd33baa8d6c2a8a67c431ea5c5a28e6620fbe2ec7fffe0",
+      "sha256Verified": true
+    },
+    {
+      "id": "D11",
+      "filename": "cake-accent-ribbon.svg",
+      "relativePath": "public/assets/svg/cake/cake-accent-ribbon.svg",
+      "family": "cake",
+      "purpose": "Ribbon band that wraps the sidewall (follows the body ellipse and the silhouette), with a small knot and two short tails. Optional decoration.",
+      "scenes": [
+        "S05",
+        "S06"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 400 300",
+      "colors": [
+        "color.deepInk #2C282A",
+        "color.dustyLavender #A79DCD"
+      ],
+      "colorsUsed": [
+        "#2C282A",
+        "#A79DCD"
+      ],
+      "animationTargets": "none",
+      "renderMode": "parameterized-svg-geometry",
+      "recommendedSize": "compose in the 400x300 cake space at (0,0)",
+      "bytes": 1253,
+      "notes": "REV 4. REV 3 was a free curved stripe at (100,196) 200x80. Now full cake space: place at 0,0. Band lavender (preset), ink shade 14 percent.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "55fbcd2e3a93e9a1124a09b60304b618220977a493d797732c9a373329a8d93e",
+      "sourceSha256": "9cc9141e97114793b09233bde781812aea4a84fb336b96734b8dbc00f8ae1a07",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/cake/cake-accent-ribbon.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "9cc9141e97114793b09233bde781812aea4a84fb336b96734b8dbc00f8ae1a07",
+      "sha256Verified": true
+    },
+    {
+      "id": "D12",
+      "filename": "candle-smoke.svg",
+      "relativePath": "public/assets/svg/cake/candle-smoke.svg",
+      "family": "cake",
+      "purpose": "Subtle smoke path after candles are extinguished. Suitable for stroke-dashoffset draw and fade.",
+      "scenes": [
+        "S06"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 86.8,
+      "viewBox": "0 0 80 160",
+      "colors": [
+        "color.deepInk #2C282A"
+      ],
+      "colorsUsed": [
+        "#2C282A"
+      ],
+      "animationTargets": "stroke-dashoffset draw then opacity fade (one owner: GSAP)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "32px to 80px wide (in cake space)",
+      "bytes": 446,
+      "notes": "Ink at 32 percent opacity. Must not be animated continuously; plays once per extinguish.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "0870ce17d33c9193f8ab83cd4267e894e606cb4f1d6d9bdf3f160d4b195aecf2",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/cake/candle-smoke.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "0870ce17d33c9193f8ab83cd4267e894e606cb4f1d6d9bdf3f160d4b195aecf2",
+      "sha256Verified": true
+    },
+    {
+      "id": "E01",
+      "filename": "invitation-paper-fold.svg",
+      "relativePath": "public/assets/svg/paper/invitation-paper-fold.svg",
+      "family": "paper",
+      "purpose": "Subtle paper-fold accent for the invitation: a folded corner flap with one crease line.",
+      "scenes": [
+        "S02"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 86.8,
+      "viewBox": "0 0 280 200",
+      "colors": [
+        "color.editorialMist #D8D2C9",
+        "color.deepInk #2C282A"
+      ],
+      "colorsUsed": [
+        "#2C282A",
+        "#D8D2C9"
+      ],
+      "animationTargets": "flap may rotate in on Open (M2), with crease line fading",
+      "renderMode": "external-svg",
+      "recommendedSize": "160px to 280px",
+      "bytes": 443,
+      "notes": "Restrained fold accent, not a stationery clip-art corner.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "36db65e25b8ea23bf326ab9082ea8d89b39f0173450e93a00431cb740f559cfc",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/paper/invitation-paper-fold.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "36db65e25b8ea23bf326ab9082ea8d89b39f0173450e93a00431cb740f559cfc",
+      "sha256Verified": true
+    },
+    {
+      "id": "E02",
+      "filename": "letter-sheet-edge.svg",
+      "relativePath": "public/assets/svg/paper/letter-sheet-edge.svg",
+      "family": "paper",
+      "purpose": "Paper sheet silhouette for the S07 letter, with a tonal back-sheet for separation. Text stays in HTML and is not embedded.",
+      "scenes": [
+        "S07"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 87.1,
+      "viewBox": "0 0 240 320",
+      "colors": [
+        "color.warmIvory #F6F1E8",
+        "color.editorialMist #D8D2C9"
+      ],
+      "colorsUsed": [
+        "#D8D2C9",
+        "#F6F1E8"
+      ],
+      "animationTargets": "none (static reading surface)",
+      "renderMode": "external-svg",
+      "recommendedSize": "160px to 240px",
+      "bytes": 341,
+      "notes": "Revision 2. Back-sheet adds depth (S1 separation) without a shadow filter. Ivory on Ivory is separated by the Mist edge and the back-sheet.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev2 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev2",
+      "assetRevision": "rev2",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "10b1829eb6e734f01ddb730666cfb10115563f2b5c134cbed8882ab75d661216",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/paper/letter-sheet-edge.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "10b1829eb6e734f01ddb730666cfb10115563f2b5c134cbed8882ab75d661216",
+      "sha256Verified": true
+    },
+    {
+      "id": "E03",
+      "filename": "letter-folded.svg",
+      "relativePath": "public/assets/svg/paper/letter-folded.svg",
+      "family": "paper",
+      "purpose": "Closed tri-fold letter: static base panel (e03-p2), bottom panel folded up (e03-p3, hinge at its bottom edge) and a shorter top flap folded down (e03-p1, hinge at its top edge) so the lower edge shows a stepped stack. No text.",
+      "scenes": [
+        "S11"
+      ],
+      "status": "REV5 geometry revised (technical validation only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV5 changed)",
+      "auditScore": null,
+      "viewBox": "0 0 244 124",
+      "colors": [
+        "color.editorialMist #D8D2C9",
+        "color.warmIvory #F6F1E8"
+      ],
+      "colorsUsed": [
+        "#D8D2C9",
+        "#F6F1E8"
+      ],
+      "animationTargets": "e03-p1 (svgOrigin 120 10) and e03-p3 (svgOrigin 120 114): scaleY 1 to -1; e03-p1-shade / e03-p3-shade: fill-opacity; e03-p1-step and e03-thickness: opacity (GSAP, scene-owned)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "160px to 260px",
+      "bytes": 1590,
+      "notes": "REV5: replaced three identical full-width stacked rectangles with progressively inset panel faces (p1<p2<p3), a curved (not straight) fold-step wedge, and a subtle top-edge contact shade, to read as an overlapping folded stack rather than an unfolded three-panel diagram. Not visually rendered/approved in this environment.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "REV5",
+      "assetRevision": "REV5",
+      "lastChangedIn": "REV5",
+      "previousSha256_rev3": "685a0a7efdf6f5aec74ebd3202ba5b5f39512b21334489e82bd4fd40d1bd19df",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/paper/letter-folded.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "previousSha256_rev4": "2fceb910cebcebed38060132b0a2d39f821d0d0e556b04cc9ee21433888fc910",
+      "sha256": "408bef5f8c8a65cf793be4bdee5c3d90cc2aaa7813cc2c901b1ece55b9d6f8d4"
+    },
+    {
+      "id": "E04",
+      "filename": "letter-crease.svg",
+      "relativePath": "public/assets/svg/paper/letter-crease.svg",
+      "family": "paper",
+      "purpose": "Crease overlay for the opened sheet: a straight pressed line with a soft tapered shade. Place one on each hinge line after unfolding.",
+      "scenes": [
+        "S11"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending (REV 4 changed; no self-score assigned)",
+      "auditScore": null,
+      "viewBox": "0 0 260 24",
+      "colors": [
+        "color.editorialMist #D8D2C9"
+      ],
+      "colorsUsed": [
+        "#D8D2C9"
+      ],
+      "animationTargets": "e04-band as one transform target; e04-edge optional",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "160px to 260px",
+      "bytes": 384,
+      "notes": "REV 4. Straight crease (REV 3 was a curved lens). Editorial Mist only.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev4",
+      "assetRevision": "rev4",
+      "lastChangedIn": "rev4",
+      "previousSha256_rev3": "b9a70a0bc642689c909cfda68441dce5c808d327a82f338cc48b282f25fb9862",
+      "sourceSha256": "2adef6f2fd9eaf0117333a10e3c9b6590507577874d8ac748dc20669bf5eaebc",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "REV 3 to REV 4 change is hash-verified in this package.",
+      "publicUrl": "/assets/svg/paper/letter-crease.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "2adef6f2fd9eaf0117333a10e3c9b6590507577874d8ac748dc20669bf5eaebc",
+      "sha256Verified": true
+    },
+    {
+      "id": "E05",
+      "filename": "paper-corner-detail.svg",
+      "relativePath": "public/assets/svg/paper/paper-corner-detail.svg",
+      "family": "paper",
+      "purpose": "Restrained folded-corner detail for a paper edge: sheet corner with a turned flap.",
+      "scenes": [
+        "S07",
+        "S12"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 86.8,
+      "viewBox": "0 0 80 80",
+      "colors": [
+        "color.warmIvory #F6F1E8",
+        "color.editorialMist #D8D2C9"
+      ],
+      "colorsUsed": [
+        "#D8D2C9",
+        "#F6F1E8"
+      ],
+      "animationTargets": "none",
+      "renderMode": "external-svg",
+      "recommendedSize": "40px to 80px",
+      "bytes": 319,
+      "notes": "A corner accent, not a scrapbook tab.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "85305a48e314371c7e34ff0844cdff9a6e755d33bdf38e2c9d8cfb6b831a40da",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/paper/paper-corner-detail.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "85305a48e314371c7e34ff0844cdff9a6e755d33bdf38e2c9d8cfb6b831a40da",
+      "sha256Verified": true
+    },
+    {
+      "id": "F01",
+      "filename": "secret-alignment-mark.svg",
+      "relativePath": "public/assets/svg/secret/secret-alignment-mark.svg",
+      "family": "secret",
+      "purpose": "Subtle discovery cue for the Quiet Second Invitation: three stepped alignment marks, quietly noticeable, not a call to action.",
+      "scenes": [
+        "S08",
+        "S09"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.8,
+      "viewBox": "0 0 160 40",
+      "colors": [
+        "color.dustyLavender #A79DCD"
+      ],
+      "colorsUsed": [
+        "#A79DCD"
+      ],
+      "animationTargets": "alignment: each mark may offset by a few units on arm",
+      "renderMode": "external-svg",
+      "recommendedSize": "96px to 160px",
+      "bytes": 530,
+      "notes": "Must stay quiet: the cue never reads as a button or confession label.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "905cdc3cf0702da48bab10c05ea0311a2c2bb96d546135232f3703a2e9abb110",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/secret/secret-alignment-mark.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "905cdc3cf0702da48bab10c05ea0311a2c2bb96d546135232f3703a2e9abb110",
+      "sha256Verified": true
+    },
+    {
+      "id": "F02",
+      "filename": "secret-partial-ring.svg",
+      "relativePath": "public/assets/svg/secret/secret-partial-ring.svg",
+      "family": "secret",
+      "purpose": "Incomplete ring for the hidden transition: three arcs with gaps.",
+      "scenes": [
+        "S09"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.2,
+      "viewBox": "0 0 256 256",
+      "colors": [
+        "color.dustyLavender #A79DCD"
+      ],
+      "colorsUsed": [
+        "#A79DCD"
+      ],
+      "animationTargets": "arcs may reassemble toward a ring (one owner)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "160px to 256px",
+      "bytes": 1872,
+      "notes": "Revision 2. Dusty Lavender on the Deep Plum environment (5.38:1). Intended background: Deep Plum or Warm Graphite, not Ivory.",
+      "intendedBackground": "Deep Plum / Warm Graphite (hidden world)",
+      "revision": "rev2 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev2",
+      "assetRevision": "rev2",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "e5422bf0541e4e120db4cd1025b4abb151aa86d6be6826497cb03a102233583b",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/secret/secret-partial-ring.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "e5422bf0541e4e120db4cd1025b4abb151aa86d6be6826497cb03a102233583b",
+      "sha256Verified": true
+    },
+    {
+      "id": "F03",
+      "filename": "vault-segmented-ring.svg",
+      "relativePath": "public/assets/svg/secret/vault-segmented-ring.svg",
+      "family": "secret",
+      "purpose": "2D segmented mechanical ring: nine segments, one champagne highlight. Reference art for the GLB ring, not a replacement for it.",
+      "scenes": [
+        "S10"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.7,
+      "viewBox": "0 0 256 256",
+      "colors": [
+        "color.dustyLavender #A79DCD",
+        "color.softChampagne #E6D4AC"
+      ],
+      "colorsUsed": [
+        "#A79DCD",
+        "#E6D4AC"
+      ],
+      "animationTargets": "segments index in sequence (only for the 2D fallback path)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "96px to 256px",
+      "bytes": 3492,
+      "notes": "Revision 2. Recoloured from Warm Graphite to Dusty Lavender for Plum contrast. Never presented as the 3D lock.",
+      "intendedBackground": "Deep Plum / Warm Graphite (hidden world)",
+      "revision": "rev2 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev2",
+      "assetRevision": "rev2",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "b6e88e193c9331457b508916133432df44dcc54f0220cadd79e461301d51c143",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/secret/vault-segmented-ring.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "b6e88e193c9331457b508916133432df44dcc54f0220cadd79e461301d51c143",
+      "sha256Verified": true
+    },
+    {
+      "id": "F04",
+      "filename": "vault-alignment-ticks.svg",
+      "relativePath": "public/assets/svg/secret/vault-alignment-ticks.svg",
+      "family": "secret",
+      "purpose": "Alignment indicators for the Vault: fifteen ticks with one taller champagne centre tick.",
+      "scenes": [
+        "S10"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.8,
+      "viewBox": "0 0 256 48",
+      "colors": [
+        "color.dustyLavender #A79DCD",
+        "color.softChampagne #E6D4AC"
+      ],
+      "colorsUsed": [
+        "#A79DCD",
+        "#E6D4AC"
+      ],
+      "animationTargets": "centre tick may flash once on lock acknowledgement (M0/M1)",
+      "renderMode": "external-svg",
+      "recommendedSize": "160px to 256px",
+      "bytes": 2048,
+      "notes": "Revision 2. Dusty Lavender ticks on Deep Plum. No numerals.",
+      "intendedBackground": "Deep Plum / Warm Graphite (hidden world)",
+      "revision": "rev2 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev2",
+      "assetRevision": "rev2",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "2ee3a437113ccc03c038e4ebc4d602e746779ca0835e110a8bfda5ca640d0986",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/secret/vault-alignment-ticks.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "2ee3a437113ccc03c038e4ebc4d602e746779ca0835e110a8bfda5ca640d0986",
+      "sha256Verified": true
+    },
+    {
+      "id": "F05",
+      "filename": "vault-keypad-accent.svg",
+      "relativePath": "public/assets/svg/secret/vault-keypad-accent.svg",
+      "family": "secret",
+      "purpose": "Calibration accent: three partial rings on different radii, each with its gap at a different angle, like a mechanism out of alignment.",
+      "scenes": [
+        "S10"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 85.3,
+      "viewBox": "0 0 200 200",
+      "colors": [
+        "color.dustyLavender #A79DCD"
+      ],
+      "colorsUsed": [
+        "#A79DCD"
+      ],
+      "animationTargets": "none (static decoration beside the DOM keypad)",
+      "renderMode": "external-svg",
+      "recommendedSize": "96px to 200px",
+      "bytes": 1690,
+      "notes": "Revision 2. Redesigned to remove the arc-pair look that read as generic. Still no numerals, grid, or dots, so it cannot be mistaken for input.",
+      "intendedBackground": "Deep Plum / Warm Graphite (hidden world)",
+      "revision": "rev2 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev2",
+      "assetRevision": "rev2",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "c062c2f75d2483a1db199bd92d1adf5d9e63a349bf8e20bd5306db9fd51ce87c",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/secret/vault-keypad-accent.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "c062c2f75d2483a1db199bd92d1adf5d9e63a349bf8e20bd5306db9fd51ce87c",
+      "sha256Verified": true
+    },
+    {
+      "id": "G01",
+      "filename": "gesture-direction-cue.svg",
+      "relativePath": "public/assets/svg/motion/gesture-direction-cue.svg",
+      "family": "motion",
+      "purpose": "Subtle directional cue for a deliberate gesture: a curved track with a start dot. No arrowhead, so it does not read as navigation.",
+      "scenes": [
+        "S09"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.6,
+      "viewBox": "0 0 160 120",
+      "colors": [
+        "color.confidentPeriwinkle #8794CC"
+      ],
+      "colorsUsed": [
+        "#8794CC"
+      ],
+      "animationTargets": "start dot pulses once when the cue is revealed",
+      "renderMode": "external-svg",
+      "recommendedSize": "96px to 160px",
+      "bytes": 479,
+      "notes": "Not an arrow glyph. Pair with a visible text instruction in HTML (DS 13.2).",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "c4473ce03518f875f3725a2cdfc3195e1c17166adbc8cf7abca501a6cdd85c19",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/motion/gesture-direction-cue.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "c4473ce03518f875f3725a2cdfc3195e1c17166adbc8cf7abca501a6cdd85c19",
+      "sha256Verified": true
+    },
+    {
+      "id": "G02",
+      "filename": "transition-mask-loop.svg",
+      "relativePath": "public/assets/svg/motion/transition-mask-loop.svg",
+      "family": "motion",
+      "purpose": "Loop-derived vector mask geometry for a documented transition integration. The file alone does not perform the transition.",
+      "scenes": [
+        "S08",
+        "S09"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 88.9,
+      "viewBox": "0 0 256 256",
+      "colors": [
+        "color.deepInk #2C282A"
+      ],
+      "colorsUsed": [
+        "#2C282A"
+      ],
+      "animationTargets": "clip-path or mask reference driven by GSAP (T2/T4 owner)",
+      "renderMode": "inline-svg-required",
+      "recommendedSize": "256px and up (mask geometry)",
+      "bytes": 2456,
+      "notes": "Solid shape used as mask data; the fill colour is irrelevant when used as clipPath. Integration must be documented in the usage guide.",
+      "intendedBackground": "mask source, background-independent",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "19fd1e5b51518fd71ca122b1b10045d9dd79ba4584cf6edd070f8a74cb466c22",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/motion/transition-mask-loop.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "19fd1e5b51518fd71ca122b1b10045d9dd79ba4584cf6edd070f8a74cb466c22",
+      "sha256Verified": true
+    },
+    {
+      "id": "G03",
+      "filename": "interaction-anchor.svg",
+      "relativePath": "public/assets/svg/motion/interaction-anchor.svg",
+      "family": "motion",
+      "purpose": "Minimal anchor for a supported gesture: an open ring with a centre target. Not meaningless decoration; marks a drop point.",
+      "scenes": [
+        "S05",
+        "S09"
+      ],
+      "status": "validated (technical only)",
+      "auditVerdict": "NOT APPROVED - owner review pending",
+      "auditScore": 86.8,
+      "viewBox": "0 0 96 96",
+      "colors": [
+        "color.mutedCoral #E67A6B"
+      ],
+      "colorsUsed": [
+        "#E67A6B"
+      ],
+      "animationTargets": "ring opens on valid placement; target dot marks the anchor",
+      "renderMode": "external-svg",
+      "recommendedSize": "32px to 96px",
+      "bytes": 1126,
+      "notes": "Decorative. Interactive behaviour must come from a real HTML control, not this SVG.",
+      "intendedBackground": "Warm Ivory (birthday world)",
+      "revision": "rev0 (byte-identical in REV 3 and REV 4)",
+      "lastChangedIn": "rev0",
+      "assetRevision": "rev0",
+      "auditScoreNote": "auditScore is the authoring model's own REV 3 self-score; it is not an independent or approved score",
+      "sourceSha256": "d51c003b2dd506e3b398aee7f578d18dad35df1612688a9e22535642a4fd24eb",
+      "technicalStatus": "xml-and-render-valid (validate_svgs.py)",
+      "artApproval": "NOT APPROVED - project-owner review pending",
+      "revisionProvenance": "rev0/rev2 attribution is taken from REV 3 ASSET_AUDIT.md notes; rev0 and rev2 bytes are not in this package, so it is not hash-verified.",
+      "publicUrl": "/assets/svg/motion/interaction-anchor.svg",
+      "pathValidation": "PASS - exists at relativePath in delivered ZIP",
+      "sha256": "d51c003b2dd506e3b398aee7f578d18dad35df1612688a9e22535642a4fd24eb",
+      "sha256Verified": true
+    }
+  ],
+  "revision": "REV5-correction-1",
+  "revisionHistory": [
+    {
+      "revision": "rev3",
+      "changed": [
+        "A01",
+        "A02",
+        "B04",
+        "D01",
+        "D02",
+        "D03",
+        "E03",
+        "E04"
+      ],
+      "basis": "independent REV 3 audit byte comparison vs REV 2"
+    },
+    {
+      "revision": "rev4",
+      "changed": [
+        "A01",
+        "A02",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D07",
+        "D08",
+        "D11",
+        "E03",
+        "E04"
+      ],
+      "basis": "SHA-256 comparison of REV 3 vs REV 4 files in this package"
+    },
+    {
+      "revision": "REV5-correction-1",
+      "scope": "A02 signature/offset-loop-open.svg only",
+      "reason": "REV5 initial pass read as a generic two-color loading ring (near-concentric ellipses). Rebuilt as one lopsided organic contour (asymmetric bump + pinch, non-elliptical) with the coral run covering most of the shape, an explicit 20deg gap, and a short periwinkle accent (~92deg) continuing from the gap and ending in open space rather than re-tracing a second near-full loop.",
+      "filesChanged": [
+        "signature/offset-loop-open.svg"
+      ],
+      "filesPreserved": 40
+    }
+  ],
+  "changedInRev4": [
+    "A01",
+    "A02",
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D07",
+    "D08",
+    "D11",
+    "E03",
+    "E04"
+  ],
+  "cakeConfigurationPresets": {
+    "note": "Presets are composer inputs (recolour and placement). The standalone SVG files keep their default colours. A real app should expose them as props or CSS custom properties.",
+    "frostingDecorPairing": {
+      "method": "WCAG relative-luminance contrast and CIE76 dE; thresholds dE<25 WEAK, luminance<1.30 HUE-ONLY are provisional QA heuristics",
+      "rows": [
+        {
+          "frosting": "coral",
+          "decorationColour": "coral",
+          "luminanceContrast": 1.0,
+          "deltaE76": 0.0,
+          "category": "SAME COLOUR"
+        },
+        {
+          "frosting": "coral",
+          "decorationColour": "periwinkle",
+          "luminanceContrast": 1.03,
+          "deltaE76": 65.6,
+          "category": "HUE-ONLY (needs luminance cue)"
+        },
+        {
+          "frosting": "coral",
+          "decorationColour": "lavender",
+          "luminanceContrast": 1.13,
+          "deltaE76": 57.2,
+          "category": "HUE-ONLY (needs luminance cue)"
+        },
+        {
+          "frosting": "coral",
+          "decorationColour": "champagne",
+          "luminanceContrast": 1.95,
+          "deltaE76": 46.2,
+          "category": "OK"
+        },
+        {
+          "frosting": "coral",
+          "decorationColour": "apricot",
+          "luminanceContrast": 1.33,
+          "deltaE76": 22.1,
+          "category": "WEAK (disallow)"
+        },
+        {
+          "frosting": "coral",
+          "decorationColour": "ivory",
+          "luminanceContrast": 2.54,
+          "deltaE76": 56.0,
+          "category": "OK"
+        },
+        {
+          "frosting": "coral",
+          "decorationColour": "mist",
+          "luminanceContrast": 1.9,
+          "deltaE76": 50.2,
+          "category": "OK"
+        },
+        {
+          "frosting": "coral",
+          "decorationColour": "ink",
+          "luminanceContrast": 5.1,
+          "deltaE76": 66.2,
+          "category": "OK"
+        },
+        {
+          "frosting": "periwinkle",
+          "decorationColour": "coral",
+          "luminanceContrast": 1.03,
+          "deltaE76": 65.6,
+          "category": "HUE-ONLY (needs luminance cue)"
+        },
+        {
+          "frosting": "periwinkle",
+          "decorationColour": "periwinkle",
+          "luminanceContrast": 1.0,
+          "deltaE76": 0.0,
+          "category": "SAME COLOUR"
+        },
+        {
+          "frosting": "periwinkle",
+          "decorationColour": "lavender",
+          "luminanceContrast": 1.17,
+          "deltaE76": 9.8,
+          "category": "WEAK (disallow)"
+        },
+        {
+          "frosting": "periwinkle",
+          "decorationColour": "champagne",
+          "luminanceContrast": 2.01,
+          "deltaE76": 57.9,
+          "category": "OK"
+        },
+        {
+          "frosting": "periwinkle",
+          "decorationColour": "apricot",
+          "luminanceContrast": 1.38,
+          "deltaE76": 69.9,
+          "category": "OK"
+        },
+        {
+          "frosting": "periwinkle",
+          "decorationColour": "ivory",
+          "luminanceContrast": 2.61,
+          "deltaE76": 49.1,
+          "category": "OK"
+        },
+        {
+          "frosting": "periwinkle",
+          "decorationColour": "mist",
+          "luminanceContrast": 1.96,
+          "deltaE76": 42.7,
+          "category": "OK"
+        },
+        {
+          "frosting": "periwinkle",
+          "decorationColour": "ink",
+          "luminanceContrast": 4.94,
+          "deltaE76": 54.8,
+          "category": "OK"
+        }
+      ]
+    },
+    "rule": "WEAK pairings (dE76 < 25) must be auto-substituted or blocked with a visible notice. HUE-ONLY pairings (luminance contrast < 1.30) are allowed only where the part carries its own luminance cue (candle highlight stripe, flower inner petals, leaf rib). Provisional QA heuristic, awaiting owner thresholds.",
+    "configA": "cfg-A-coral-garden",
+    "configB": "cfg-B-periwinkle-warm"
+  },
+  "evidence": "REV4_EVIDENCE/ (outside public/, not for deployment)",
+  "libraryRevision": "REV5-correction-1",
+  "checksumPolicy": "Every asset carries one authoritative field, sha256 (full 64-hex digest of the file as delivered in THIS package). previousSha256_<revtag> fields are historical lineage only -- the hash the file had as of that earlier revision -- and are never overwritten. assetRevision/lastChangedIn record the revision tag in which the file's bytes were most recently actually modified; for files unchanged since baseline this is 'rev0' or 'rev4' as already recorded, not invented.",
+  "pathPolicy": "relativePath is the filesystem path from the package/repo root: public/assets/svg/<family>/<file>. publicUrl is the Next.js-served URL for the same file (the public/ prefix is stripped by Next.js static serving): /assets/svg/<family>/<file>."
+}

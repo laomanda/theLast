@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" id="g01-root" aria-hidden="true" focusable="false">
+    <path id="g01-track" d="M22,92 C52,36 108,36 138,92" fill="none" stroke="#8794CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle id="g01-start" cx="22" cy="92" r="3.5" fill="#8794CC"/>
+    <path id="g01-end" d="M138,92 L146,80" fill="none" stroke="#8794CC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

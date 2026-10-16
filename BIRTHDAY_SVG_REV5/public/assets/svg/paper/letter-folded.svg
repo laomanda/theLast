@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244 124" id="e03-root" aria-hidden="true" focusable="false">
+    <rect id="e03-thickness" x="14" y="16" width="218" height="102" rx="2" fill="#D8D2C9"/>
+    <g id="e03-p3">
+      <rect id="e03-p3-face" x="11" y="14" width="214" height="100" rx="2" fill="#F6F1E8" stroke="#D8D2C9" stroke-width="1.6"/>
+      <rect id="e03-p3-shade" x="11" y="14" width="214" height="100" rx="2" fill="#D8D2C9" fill-opacity="0.12"/>
+      <path id="e03-p3-fold" d="M13,106.6 C70,105.8 170,107.4 223,106" fill="none" stroke="#D8D2C9" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <path id="e03-p1-step" d="M10.5,100.4 C70,99.4 174,101 231.5,99.8 V103.4 C174,104.6 70,103 10.5,104 Z" fill="#D8D2C9" fill-opacity="0.5"/>
+    <g id="e03-p2">
+      <rect id="e03-p2-face" x="10" y="12" width="216" height="92" rx="2" fill="#F6F1E8" stroke="#D8D2C9" stroke-width="1.6"/>
+      <rect id="e03-p2-shade" x="10" y="12" width="216" height="92" rx="2" fill="#D8D2C9" fill-opacity="0.06"/>
+      <path id="e03-p2-fold" d="M12,13.6 C70,12.8 170,14.2 224,13.2" fill="none" stroke="#D8D2C9" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g id="e03-p1">
+      <rect id="e03-p1-face" x="8.5" y="10" width="213" height="88" rx="2" fill="#F6F1E8" stroke="#D8D2C9" stroke-width="1.6"/>
+      <rect id="e03-p1-shade" x="8.5" y="10" width="213" height="18" rx="2" fill="#2C282A" fill-opacity="0.05"/>
+      <path id="e03-p1-fold" d="M10.5,11.6 C68,10.8 168,12.2 219.5,11.2" fill="none" stroke="#D8D2C9" stroke-width="2" stroke-linecap="round"/>
+    </g>
+</svg>

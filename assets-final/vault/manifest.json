@@ -1,0 +1,146 @@
+{
+  "manifestVersion": "1.0",
+  "packageVersion": "1.0.0-review-candidate",
+  "candidateId": "VAULT_V2_INTEGRATION_CANDIDATE_SURFACE_PERFORMANCE_REVIEW",
+  "finalizationStatus": "VAULT_V2_INTEGRATION_CANDIDATE",
+  "visualApproval": "PENDING_OWNER_REVIEW",
+  "performanceStatus": "RECORDED_NO_BUDGET_NOT_PASS",
+  "sourcePackage": "deliverables/VAULT_V2_SURFACE_PERFORMANCE_FINAL_REVIEW",
+  "files": [
+    {
+      "path": "docs/ASSET_SPEC.md",
+      "role": "ASSET_SPECIFICATION",
+      "bytes": 2581,
+      "sha256": "29cf520af77d545c54abc0eef605515e79b81f6a27e651bd6070b580ea091dc6",
+      "sourcePath": "created for this consolidation from verified project/source evidence"
+    },
+    {
+      "path": "docs/INTEGRATION_NOTES.md",
+      "role": "INTEGRATION_DOCUMENTATION",
+      "bytes": 3451,
+      "sha256": "e70467cf94e13c64d0284467362318d295f22a276ad9a72a87fc3e053676afe6",
+      "sourcePath": "created for this consolidation from verified project/source evidence"
+    },
+    {
+      "path": "docs/MATERIAL_SPEC.md",
+      "role": "MATERIAL_SPECIFICATION",
+      "bytes": 1822,
+      "sha256": "b3dc0779a3111a2875e521ed87b0486f6d75ea642c9729ba10f0346543689cb5",
+      "sourcePath": "created for this consolidation from verified project/source evidence"
+    },
+    {
+      "path": "README.md",
+      "role": "PACKAGE_README",
+      "bytes": 2131,
+      "sha256": "49cd0b8e896b7053f917d7b7dbc87885b151eede0993bcaff06db2ecf88ac1cd",
+      "sourcePath": "created for this consolidation from verified project/source evidence"
+    },
+    {
+      "path": "runtime/hinge.mjs",
+      "role": "RUNTIME_MECHANICAL_ADAPTER",
+      "bytes": 1572,
+      "sha256": "0af33f10e82e33b6c6ad33ce0e336d22280acd744edfa2b9b76c4ba8e1c109e0",
+      "sourcePath": "deliverables/VAULT_V2_SURFACE_PERFORMANCE_FINAL_REVIEW/runtime/hinge.mjs"
+    },
+    {
+      "path": "runtime/material-overrides.json",
+      "role": "RUNTIME_REVIEW_CONFIGURATION",
+      "bytes": 1212,
+      "sha256": "56637fb23baf0b3e5f15d73a511203497a8fb4aa555bc7955e8fd233bdc64d60",
+      "sourcePath": "created for this consolidation from verified project/source evidence"
+    },
+    {
+      "path": "runtime/surface_finish.mjs",
+      "role": "RUNTIME_SURFACE_HELPER",
+      "bytes": 4290,
+      "sha256": "d3b37f9deb5a309a0d0fea824ebe893d67b86c196a0965acbf0447a18eccab94",
+      "sourcePath": "deliverables/VAULT_V2_SURFACE_PERFORMANCE_FINAL_REVIEW/runtime/after/surface_finish.mjs; packaging adaptation: URL made configurable and relative"
+    },
+    {
+      "path": "runtime/textures/micrograin.png",
+      "role": "FINAL_RUNTIME_TEXTURE",
+      "bytes": 28062,
+      "sha256": "411918c1607b9a58939fc57bf1a5b451bd39f7f6e63f945e3306c14a14ab09a7",
+      "sourcePath": "deliverables/VAULT_V2_SURFACE_PERFORMANCE_FINAL_REVIEW/runtime/textures/micrograin.png"
+    },
+    {
+      "path": "runtime/vault-final.glb",
+      "role": "FINAL_RUNTIME_GLTF_BINARY",
+      "bytes": 741096,
+      "sha256": "9bc128a9c020aa2604f5e9b6aa7a72534adae300506c37255196a47227dc2a2b",
+      "sourcePath": "deliverables/VAULT_V2_SURFACE_PERFORMANCE_FINAL_REVIEW/source/VAULT_V2_STATIC_FRAME_RETURN_CANDIDATE.glb"
+    },
+    {
+      "path": "source/vault-v2-geometry-derivative.blend",
+      "role": "EDITABLE_FINAL_DERIVATIVE_SOURCE",
+      "bytes": 181345,
+      "sha256": "5ea426b71c07583de6a768363d1a13fa74e82b6425c1e927e72ce54014cab282",
+      "sourcePath": "deliverables/VAULT_V2_SURFACE_PERFORMANCE_FINAL_REVIEW/source/VAULT_V2_STATIC_FRAME_RETURN_CANDIDATE.blend"
+    }
+  ],
+  "runtimeDependencies": {
+    "runtime/vault-final.glb": [],
+    "runtime/textures/micrograin.png": [],
+    "runtime/surface_finish.mjs": [
+      "runtime/textures/micrograin.png",
+      "host-provided Three.js TextureLoader/WebGLRenderer"
+    ],
+    "runtime/hinge.mjs": [
+      "host-provided Three.js Quaternion, Vector3 and MathUtils"
+    ],
+    "runtime/material-overrides.json": [
+      "host integration must clone source materials per instance"
+    ]
+  },
+  "materialIds": [
+    "VaultBody_M5",
+    "VaultDoor_M5",
+    "LockAccent_Lavender",
+    "LockAccent_Champagne",
+    "LetterPaper_M4"
+  ],
+  "interactionNodeIds": [
+    "Vault_Root",
+    "Vault_Body",
+    "Door_Hinge_Pivot",
+    "Door_Panel",
+    "Hinge_Leaf_Door",
+    "Hinge_Leaf_Body_Top",
+    "Hinge_Leaf_Body_Bottom",
+    "Hinge_Pin_Top",
+    "Hinge_Pin_Bottom",
+    "Lock_Assembly",
+    "Lock_Core_Pivot",
+    "Lock_Handle_Pivot",
+    "Letter_Compartment",
+    "Folded_Letter"
+  ],
+  "mechanics": {
+    "runtimeAxis": [
+      0,
+      1,
+      0
+    ],
+    "positiveOpenDegrees": 92,
+    "positiveDirection": "runtime +Z/front free-edge motion around runtime world +Y hinge axis",
+    "stateContract": "doorOpening → doorOpen → letterAvailable → letterSelected"
+  },
+  "frozenV1": {
+    "blend": {
+      "path": "exports/frozen/vault_v1/vault_v1_graybox.blend",
+      "sha256": "26fa361e2caaa50d85cb9c896ad7608a2fe1ca9dcf4e952f8fd6df8de269f380"
+    },
+    "glb": {
+      "path": "exports/frozen/vault_v1/vault_v1_graybox.glb",
+      "sha256": "0416c79cd63b8e2d1c6d70f626fe755a54bbf342ab09171a88ec3b496382e099"
+    }
+  },
+  "limitations": [
+    "Clean extracted npm install/browser regression blocked by registry DNS ENOTFOUND in the latest package audit",
+    "GPU timer extension available but queries not sampled",
+    "No owner-approved target-device performance budget",
+    "No production Next.js/R3F URL smoke test",
+    "Owner visual approval remains pending"
+  ],
+  "manifestIntegrity": "SHA-256 values are generated for every packaged file except this manifest itself; SHA256_MANIFEST.json in the review package covers the complete review deliverable."
+}
