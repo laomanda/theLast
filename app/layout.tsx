@@ -5,10 +5,13 @@ import { bricolageGrotesque, newsreader, shantellSans } from "@/src/ui/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "theLast",
+  title: "Malica Yohana Hutagaol",
   description: "A Keepsake That Slowly Opens",
   icons: {
-    icon: "/assets/svg/signature/offset-loop-open.svg",
+    icon: [
+      { url: "/assets/favicon.png", type: "image/png" },
+      { url: "/assets/favicon.png", rel: "shortcut icon", type: "image/png" },
+    ],
   },
 };
 
