@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 200" id="e01-root" aria-hidden="true" focusable="false">
+    <path id="e01-flap" d="M170,20 L262,20 L262,112 Z" fill="#D8D2C9"/>
+    <path id="e01-crease" d="M170,20 L262,112" fill="none" stroke="#2C282A" stroke-width="1" opacity="0.35"/>
+    <path id="e01-edge" d="M20,20 L170,20" fill="none" stroke="#D8D2C9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

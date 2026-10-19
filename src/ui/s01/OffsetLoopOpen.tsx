@@ -1,0 +1,63 @@
+import type { RefObject, SVGProps } from "react";
+
+export interface OffsetLoopOpenProps extends SVGProps<SVGSVGElement> {
+  outerRef?: RefObject<SVGPathElement | null>;
+  innerRef?: RefObject<SVGPathElement | null>;
+  svgRef?: RefObject<SVGSVGElement | null>;
+  /**
+   * If true, renders with paths fully drawn (stroke-dashoffset: 0, stroke-dasharray: none)
+   * for immediate static rendering or reduced-motion.
+   */
+  staticMode?: boolean;
+}
+
+export function OffsetLoopOpen({
+  outerRef,
+  innerRef,
+  svgRef,
+  staticMode = false,
+  className = "w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56",
+  ...props
+}: OffsetLoopOpenProps) {
+  const initialStyle = staticMode
+    ? { strokeDasharray: "none", strokeDashoffset: 0 }
+    : { strokeDasharray: 100, strokeDashoffset: 100 };
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      id="a02-root"
+      ref={svgRef}
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+      {...props}
+    >
+      <path
+        id="a02-outer"
+        ref={outerRef}
+        pathLength={100}
+        d="M171.63,88.32 C173.28,89.04 178.48,90.95 181.52,92.62 C184.55,94.30 187.36,96.24 189.84,98.35 C192.32,100.45 194.52,102.79 196.39,105.23 C198.26,107.67 199.82,110.31 201.07,113.01 C202.32,115.71 203.25,118.54 203.90,121.43 C204.55,124.32 204.91,127.30 204.99,130.34 C205.07,133.37 204.88,136.48 204.38,139.62 C203.88,142.77 203.13,145.98 201.99,149.20 C200.84,152.42 199.41,155.73 197.51,158.95 C195.60,162.16 193.32,165.44 190.55,168.48 C187.78,171.51 184.53,174.53 180.90,177.17 C177.27,179.81 173.10,182.30 168.76,184.32 C164.42,186.34 159.62,188.04 154.87,189.30 C150.13,190.57 145.11,191.40 140.28,191.90 C135.46,192.40 130.57,192.46 125.93,192.30 C121.29,192.14 116.75,191.61 112.45,190.93 C108.14,190.24 104.02,189.30 100.09,188.21 C96.17,187.13 92.43,185.85 88.90,184.43 C85.37,183.01 82.01,181.42 78.91,179.67 C75.81,177.92 72.90,176.01 70.29,173.95 C67.68,171.88 65.28,169.64 63.25,167.27 C61.23,164.90 59.47,162.35 58.12,159.72 C56.76,157.10 55.74,154.32 55.15,151.51 C54.56,148.70 54.65,144.31 54.55,142.87"
+        fill="none"
+        stroke="#E67A6B"
+        strokeWidth={9}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={initialStyle}
+      />
+      <path
+        id="a02-inner"
+        ref={innerRef}
+        pathLength={100}
+        d="M60.92,125.22 C61.73,124.20 63.98,121.02 65.76,119.05 C67.53,117.09 69.51,115.20 71.57,113.42 C73.62,111.63 75.84,109.95 78.10,108.35 C80.35,106.75 82.72,105.25 85.11,103.82 C87.50,102.38 89.95,101.05 92.44,99.76 C94.93,98.47 97.46,97.26 100.05,96.09 C102.64,94.93 105.27,93.82 107.97,92.79 C110.67,91.75 113.42,90.76 116.26,89.87 C119.09,88.98 122.01,88.15 124.98,87.45 C127.95,86.76 131.01,86.14 134.09,85.69 C137.17,85.24 140.33,84.91 143.46,84.76 C146.60,84.61 151.33,84.80 152.91,84.80"
+        fill="none"
+        stroke="#8794CC"
+        strokeWidth={9}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={initialStyle}
+      />
+    </svg>
+  );
+}

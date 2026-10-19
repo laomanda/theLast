@@ -52,6 +52,7 @@ export interface CakeConfiguration {
 export interface CakeState {
   lifecycle: CakeLifecycle;
   draft: CakeConfiguration;
+  history: readonly CakeConfiguration[];
   finalized: CakeConfiguration | null;
   finalizedVersion: number;
 }
@@ -97,6 +98,9 @@ export type RuntimeEvent =
   | { type: "SHELL_DEGRADED_READY" }
   | { type: "OPEN_INVITATION" }
   | { type: "CONTINUE" }
+  | { type: "UPDATE_CAKE_DRAFT"; configuration: CakeConfiguration }
+  | { type: "UNDO_CAKE_DRAFT" }
+  | { type: "RESET_CAKE_DRAFT" }
   | { type: "FINISH_CAKE"; configuration: CakeConfiguration }
   | { type: "EXTINGUISH_WISH" }
   | { type: "COMPLETE_BIRTHDAY" }
@@ -192,12 +196,19 @@ export interface Vault3DAdapterBoundary {
 }
 
 export const DEFAULT_CAKE_CONFIGURATION: CakeConfiguration = {
-  frosting: "default",
-  candles: [],
-  flowers: [],
+  frosting: "cfg-A-coral-garden",
+  candles: ["candle-left", "candle-center", "candle-right"],
+  flowers: ["flower-left", "flower-right"],
   topper: null,
-  accents: [],
-  placements: {},
+  accents: ["accent-pearls"],
+  placements: {
+    "candle-left": "top-left",
+    "candle-center": "top-center",
+    "candle-right": "top-right",
+    "flower-left": "top-front-left",
+    "flower-right": "top-front-right",
+    "accent-pearls": "rim-front",
+  },
 };
 
 export function cloneCakeConfiguration(configuration: CakeConfiguration): CakeConfiguration {
@@ -257,6 +268,7 @@ function snapshotRuntimeEventUnsafe(input: unknown): RuntimeEvent | null {
   if (typeof candidate.type !== "string") return null;
 
   switch (candidate.type) {
+    case "UPDATE_CAKE_DRAFT":
     case "FINISH_CAKE": {
       if (!isCakeConfiguration(candidate.configuration)) return null;
       const configuration = cloneCakeConfiguration(candidate.configuration);
@@ -265,7 +277,9 @@ function snapshotRuntimeEventUnsafe(input: unknown): RuntimeEvent | null {
       Object.freeze(configuration.accents);
       Object.freeze(configuration.placements);
       Object.freeze(configuration);
-      return freezeSnapshot({ type: "FINISH_CAKE" as const, configuration });
+      return candidate.type === "UPDATE_CAKE_DRAFT"
+        ? freezeSnapshot({ type: "UPDATE_CAKE_DRAFT" as const, configuration })
+        : freezeSnapshot({ type: "FINISH_CAKE" as const, configuration });
     }
     case "SUBMIT_VAULT_PIN":
       return typeof candidate.pin === "string" ? freezeSnapshot({ type: "SUBMIT_VAULT_PIN" as const, pin: candidate.pin }) : null;
@@ -279,6 +293,8 @@ function snapshotRuntimeEventUnsafe(input: unknown): RuntimeEvent | null {
     case "SHELL_DEGRADED_READY":
     case "OPEN_INVITATION":
     case "CONTINUE":
+    case "UNDO_CAKE_DRAFT":
+    case "RESET_CAKE_DRAFT":
     case "EXTINGUISH_WISH":
     case "COMPLETE_BIRTHDAY":
     case "ARM_HIDDEN_PORTAL":

@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
+  DEFAULT_CAKE_CONFIGURATION,
   SCENE_IDS,
+  cloneCakeConfiguration,
   sameCakeConfiguration,
   type CakeConfiguration,
   type RuntimeEvent,
@@ -18,14 +20,7 @@ import {
   type ExperienceRuntime,
 } from "../../src/state/experience-store";
 
-const cake: CakeConfiguration = {
-  frosting: "ivory",
-  candles: ["tall"],
-  flowers: ["small-flower"],
-  topper: "star",
-  accents: ["pearl"],
-  placements: { flower: "left", topper: "center" },
-};
+const cake: CakeConfiguration = cloneCakeConfiguration(DEFAULT_CAKE_CONFIGURATION);
 
 function deferred<T = void>() {
   let resolve!: (value: T | PromiseLike<T>) => void;
@@ -125,18 +120,13 @@ describe("authoritative runtime foundation", () => {
     const held = deferred();
     const runtime = makeRuntime((event) => event.type === "FINISH_CAKE" ? held.promise : Promise.resolve());
     await reachScene05(runtime);
-    const callerOwnedCake = {
-      frosting: "ivory",
-      candles: ["tall"],
-      flowers: ["small-flower"],
-      topper: "star",
-      accents: ["pearl"],
-      placements: { flower: "left", topper: "center" },
+    const callerOwnedCake = cloneCakeConfiguration(DEFAULT_CAKE_CONFIGURATION) as {
+      frosting: string; candles: string[]; flowers: string[]; topper: string | null; accents: string[]; placements: Record<string, string>;
     };
     const transition = runtime.dispatch({ type: "FINISH_CAKE", configuration: callerOwnedCake });
     callerOwnedCake.frosting = "mutated-after-dispatch";
     callerOwnedCake.candles.push("extra");
-    callerOwnedCake.placements.flower = "right";
+    callerOwnedCake.placements["flower-left"] = "top-front-right";
     held.resolve();
     expect((await transition).status).toBe("committed");
     expect(runtime.getState().cake.finalized).toEqual(cake);
@@ -154,7 +144,7 @@ describe("authoritative runtime foundation", () => {
   it("compares Cake placement records independently of property insertion order", () => {
     const reordered: CakeConfiguration = {
       ...cake,
-      placements: { topper: "center", flower: "left" },
+      placements: Object.fromEntries(Object.entries(cake.placements).reverse()),
     };
     expect(sameCakeConfiguration(cake, reordered)).toBe(true);
   });

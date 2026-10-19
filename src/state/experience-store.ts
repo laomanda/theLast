@@ -9,6 +9,7 @@ import {
   type TransitionResult,
 } from "../runtime/contracts";
 import { TransitionEngine, type RuntimeStore, type TransitionHooks } from "../runtime/transition-engine";
+import { runtimeTransitionCoordinator } from "../runtime/transition-coordinator";
 import { validateVaultPin } from "../runtime/guards";
 
 export interface ExperienceRuntime {
@@ -29,6 +30,7 @@ export function createInitialExperienceState(): ExperienceState {
     cake: {
       lifecycle: "draft",
       draft: cloneCakeConfiguration(DEFAULT_CAKE_CONFIGURATION),
+      history: [],
       finalized: null,
       finalizedVersion: 0,
     },
@@ -76,10 +78,43 @@ function reduceAuthorizedEvent(
       cake: {
         lifecycle: "finalized",
         draft: finalized,
+        history: state.cake.history,
         finalized,
         finalizedVersion: state.cake.finalizedVersion + 1,
       },
       wish: { ...state.wish, status: "flameOn", cakeConfiguration: finalized },
+    };
+  }
+  if (event.type === "UPDATE_CAKE_DRAFT") {
+    return {
+      ...state,
+      cake: {
+        ...state.cake,
+        draft: cloneCakeConfiguration(event.configuration),
+        history: [...state.cake.history.slice(-11), cloneCakeConfiguration(state.cake.draft)],
+      },
+    };
+  }
+  if (event.type === "UNDO_CAKE_DRAFT") {
+    const previous = state.cake.history.at(-1);
+    if (!previous) return state;
+    return {
+      ...state,
+      cake: {
+        ...state.cake,
+        draft: cloneCakeConfiguration(previous),
+        history: state.cake.history.slice(0, -1),
+      },
+    };
+  }
+  if (event.type === "RESET_CAKE_DRAFT") {
+    return {
+      ...state,
+      cake: {
+        ...state.cake,
+        draft: cloneCakeConfiguration(DEFAULT_CAKE_CONFIGURATION),
+        history: [...state.cake.history.slice(-11), cloneCakeConfiguration(state.cake.draft)],
+      },
     };
   }
   if (event.type === "EXTINGUISH_WISH") {
@@ -209,7 +244,9 @@ export function createExperienceRuntime(hooks: TransitionHooks = {}): Experience
   return createRuntimeBundle(hooks).runtime;
 }
 
-const singleton = createRuntimeBundle();
+const singleton = createRuntimeBundle({
+  prepare: (event, target, signal) => runtimeTransitionCoordinator.prepare(event, target, signal),
+});
 export const experienceRuntime = singleton.runtime;
 
 export function useExperienceStore<T>(selector: (state: ExperienceState) => T): T {

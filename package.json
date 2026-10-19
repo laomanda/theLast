@@ -13,7 +13,9 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test:unit": "vitest run --passWithNoTests",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "validate:release": "node --experimental-strip-types src/release/cli.ts",
+    "package:evidence": "node --experimental-strip-types src/evidence/packaging/cli.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",

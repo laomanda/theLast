@@ -5,6 +5,7 @@ import {
   type SceneId,
   sameCakeConfiguration,
 } from "./contracts";
+import { isSupportedCakeConfiguration } from "../cake/configuration";
 
 export interface CanonicalSceneEdge {
   from: SceneId;
@@ -85,6 +86,24 @@ export function canHandleEvent(state: ExperienceState, event: RuntimeEvent): Gua
       : reject("INVALID_CAKE_CONFIGURATION");
   }
 
+  if (event.type === "UPDATE_CAKE_DRAFT") {
+    return state.scene === "S05" && state.cake.lifecycle === "draft" && isSupportedCakeConfiguration(event.configuration)
+      ? { accepted: true, target: null }
+      : reject("INVALID_CAKE_CONFIGURATION");
+  }
+
+  if (event.type === "UNDO_CAKE_DRAFT") {
+    return state.scene === "S05" && state.cake.lifecycle === "draft" && state.cake.history.length > 0
+      ? { accepted: true, target: null }
+      : reject("EVENT_NOT_APPLICABLE");
+  }
+
+  if (event.type === "RESET_CAKE_DRAFT") {
+    return state.scene === "S05" && state.cake.lifecycle === "draft"
+      ? { accepted: true, target: null }
+      : reject("EVENT_NOT_APPLICABLE");
+  }
+
   if (event.type === "EXTINGUISH_WISH") {
     return state.scene === "S06" && state.wish.status === "flameOn"
       ? { accepted: true, target: null }
@@ -157,7 +176,7 @@ export function validateVaultPin(pin: string): boolean {
 }
 
 export function validateCakeFinish(state: ExperienceState, configuration: Extract<RuntimeEvent, { type: "FINISH_CAKE" }>["configuration"]): boolean {
-  return state.scene === "S05" && state.cake.lifecycle === "draft" && configuration.frosting.trim().length > 0;
+  return state.scene === "S05" && state.cake.lifecycle === "draft" && isSupportedCakeConfiguration(configuration);
 }
 
 export function hasS05S06CakeContinuity(state: ExperienceState): boolean {
