@@ -167,9 +167,6 @@ export function S02Invitation() {
       aria-labelledby="s02-title"
       className="s02-scene"
     >
-      <div className="s02-scene-index" aria-hidden="true">
-        THE LAST / 02
-      </div>
 
       <section className="s02-composition">
         <div className="s02-object-column">
@@ -186,8 +183,7 @@ export function S02Invitation() {
         </div>
 
         <div ref={copyRef} className="s02-copy-column">
-          <p className="s02-eyebrow" aria-hidden="true">FOLDED KEEPSAKE</p>
-          <h1 id="s02-title" className="s02-title">Ada sesuatu untukmu.</h1>
+          <h1 id="s02-title" className="s02-title">Silahkan dibuka yaa 🎂.</h1>
           <button
             type="button"
             onClick={handleOpen}
