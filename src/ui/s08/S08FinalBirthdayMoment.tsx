@@ -26,6 +26,7 @@ export function S08FinalBirthdayMoment() {
   const transitionActive = useExperienceStore((state) => state.transition.activeId !== null);
   const portalArmed = useExperienceStore((state) => state.hiddenPortal === "armed");
   const [phase, setPhase] = useState<VisualPhase>(prefersReducedMotion ? "resting" : "entering");
+  const [endingState, setEndingState] = useState<"active" | "ended">("active");
   const [error, setError] = useState<string | null>(null);
   const visualPhase: VisualPhase = birthdayComplete ? "complete" : phase;
 
@@ -85,6 +86,10 @@ export function S08FinalBirthdayMoment() {
     if (!birthdayComplete || portalArmed || transitionActive) return;
     await experienceRuntime.dispatch({ type: "ARM_HIDDEN_PORTAL" });
   };
+  const endBirthday = () => {
+    if (transitionActive || pendingRef.current) return;
+    setEndingState("ended");
+  };
   const commitPortal = async () => {
     if (!portalArmed || transitionActive || pendingRef.current) return;
     pendingRef.current = true;
@@ -94,13 +99,13 @@ export function S08FinalBirthdayMoment() {
   const pointerUp = (event: PointerEvent<HTMLButtonElement>) => {
     const start = pointerStartRef.current; pointerStartRef.current = null;
     if (start === null) return;
-    pointerHandledRef.current = true;
-    if (start - event.clientY >= 56) void commitPortal();
+    pointerHandledRef.current = start - event.clientY >= 56;
+    if (pointerHandledRef.current) void commitPortal();
   };
   const portalClick = () => { if (pointerHandledRef.current) { pointerHandledRef.current = false; return; } void commitPortal(); };
 
   return (
-    <main ref={sceneRef} data-testid="s08-scene" data-visual-phase={visualPhase} data-complete={birthdayComplete ? "true" : "false"} data-reduced-motion={prefersReducedMotion ? "true" : "false"} className="s08-scene" aria-labelledby="s08-title">
+    <main ref={sceneRef} data-testid="s08-scene" data-visual-phase={visualPhase} data-complete={birthdayComplete ? "true" : "false"} data-ending-state={endingState} data-reduced-motion={prefersReducedMotion ? "true" : "false"} className="s08-scene" aria-labelledby="s08-title">
       <p className="s08-kicker" aria-hidden="true">{S08_CONTENT.kicker}</p>
       <div className="s08-field s08-field--coral" aria-hidden="true" />
       <div className="s08-field s08-field--lavender" aria-hidden="true" />
@@ -116,9 +121,10 @@ export function S08FinalBirthdayMoment() {
         ) : (
           <div ref={controlsRef} className="s08-ending-controls" data-testid="s08-ending-controls">
             <p className="s08-complete-note" role="status">Pengalaman ulang tahun telah selesai.</p>
-            <button type="button" data-testid="s08-end" className="s08-end" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{S08_CONTENT.endLabel}</button>
+            <button type="button" data-testid="s08-end" className="s08-end" onClick={endBirthday} aria-pressed={endingState === "ended"}>{S08_CONTENT.endLabel}</button>
             <button type="button" data-testid="s08-replay" className="s08-replay" onClick={replay}>{S08_CONTENT.replayLabel}</button>
-            {!portalArmed ? <button type="button" data-testid="s08-discover" className="s08-discover" onClick={armPortal}>·</button> : <button ref={portalRef} type="button" data-testid="s08-portal" className="s08-portal" onPointerDown={pointerDown} onPointerUp={pointerUp} onPointerCancel={() => { pointerStartRef.current = null; pointerHandledRef.current = true; }} onClick={portalClick} aria-label="Lanjutkan ke lapisan tambahan">Tarik ke atas</button>}
+            {!portalArmed ? <button type="button" data-testid="s08-discover" className="s08-discover" onClick={armPortal}>Temukan lapisan lain</button> : <button ref={portalRef} type="button" data-testid="s08-portal" className="s08-portal" onPointerDown={pointerDown} onPointerUp={pointerUp} onPointerCancel={() => { pointerStartRef.current = null; pointerHandledRef.current = true; }} onClick={portalClick} aria-label="Lanjutkan ke lapisan tambahan">Tarik ke atas</button>}
+            {endingState === "ended" ? <p className="s08-ended-note" role="status" data-testid="s08-ended">Selesai. Tidak ada langkah lain yang diperlukan.</p> : null}
             <p className="s08-optional-note">Tidak ada langkah lain yang diperlukan.</p>
           </div>
         )}

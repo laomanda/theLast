@@ -1,6 +1,6 @@
 "use client";
 
-import { ContactShadows, Html, useGLTF } from "@react-three/drei";
+import { ContactShadows, useGLTF } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { Component, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -24,19 +24,20 @@ const createWorldAxisHingeAdapter = createWorldAxisHingeAdapterUntyped as unknow
 function StudioCamera({ open }: { open: boolean }) {
   const { camera, size } = useThree();
   useLayoutEffect(() => {
-    const mobile = size.width < 700;
-    const targetZ = mobile ? (open ? 6.15 : 5.45) : (open ? 5.15 : 4.45);
-    const targetX = mobile ? 2.45 : 2.8;
-    const targetY = mobile ? 1.7 : 1.95;
+    const mobile = size.width < 600;
+    const tablet = size.width < 1000;
+    const targetZ = mobile ? (open ? 4.72 : 3.92) : tablet ? (open ? 4.55 : 3.78) : (open ? 4.18 : 3.42);
+    const targetX = mobile ? 1.82 : tablet ? 2.12 : 2.28;
+    const targetY = mobile ? 1.3 : tablet ? 1.48 : 1.62;
     const tween = gsap.to(camera.position, {
       x: targetX,
       y: targetY,
       z: targetZ,
       duration: open ? 0.55 : 0,
       ease: "power2.out",
-      onUpdate: () => camera.lookAt(0, 0.62, 0),
+      onUpdate: () => camera.lookAt(0, 0.57, 0),
     });
-    camera.lookAt(0, 0.62, 0);
+    camera.lookAt(0, 0.57, 0);
     return () => { tween.kill(); };
   }, [camera, open, size.width]);
   return null;
@@ -139,19 +140,21 @@ function VaultCanvas({
   const invalidate = useCallback(() => invalidateRef.current?.(), []);
   return <Canvas
     data-testid="s10-vault-canvas"
-    camera={{ position: [2.8, 1.95, 4.45], fov: 38, near: 0.1, far: 100 }}
+    camera={{ position: [2.28, 1.62, 3.42], fov: 34, near: 0.1, far: 100 }}
     dpr={[1, 1.5]}
     frameloop={openRequest > 0 && !opened ? "always" : "demand"}
-    shadows="soft"
-    gl={{ antialias: true, alpha: true, powerPreference: "high-performance", toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.08 }}
+    shadows
+    gl={{ antialias: true, alpha: true, powerPreference: "high-performance", toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.18 }}
     onCreated={({ invalidate }) => { invalidateRef.current = invalidate; invalidate(); }}
   >
     <StudioCamera open={openRequest > 0} />
-    <ambientLight intensity={0.72} color="#A79DCD" />
-    <hemisphereLight args={["#E6D4AC", "#352B37", 1.12]} />
-    <directionalLight castShadow position={[3.5, 5, 4]} intensity={2.4} color="#F6F1E8" shadow-mapSize={[1024, 1024]} shadow-bias={-0.0002} />
-    <directionalLight position={[-3, 2.2, -2]} intensity={0.65} color="#A79DCD" />
-    <Suspense fallback={<Html center><span className="s10-loading-label">Vault memuat...</span></Html>}>
+    <ambientLight intensity={0.88} color="#B7AFD5" />
+    <hemisphereLight args={["#F3E5C8", "#241E26", 1.3]} />
+    <directionalLight castShadow position={[3.8, 5.2, 4.2]} intensity={2.75} color="#FFF8EA" shadow-mapSize={[1024, 1024]} shadow-bias={-0.0002} />
+    <directionalLight position={[-3.4, 2.5, 1.2]} intensity={1.05} color="#A79DCD" />
+    <pointLight position={[-1.8, 1.2, -2.4]} intensity={1.15} color="#E6D4AC" distance={7} decay={2} />
+    <pointLight position={[0.25, 1.05, 1.55]} intensity={0.72} color="#F6E5BF" distance={4.5} decay={2} />
+    <Suspense fallback={null}>
       <VaultErrorBoundary onError={onFailure}>
         <VaultModel
           openRequest={openRequest}
@@ -162,14 +165,22 @@ function VaultCanvas({
         />
       </VaultErrorBoundary>
     </Suspense>
-    <ContactShadows position={[0, -0.01, 0]} opacity={0.34} scale={3.8} blur={1.5} far={2.8} frames={1} color="#161217" />
+    <ContactShadows position={[0, -0.01, 0]} opacity={0.42} scale={4.4} blur={2.1} far={3.2} frames={1} color="#161217" />
   </Canvas>;
 }
 
 function VaultFallback({ opened }: { opened: boolean }) {
-  return <div className={`s10-fallback-object${opened ? " is-open" : ""}`} aria-label={opened ? "Vault terbuka" : "Vault tertutup"}>
-    <div className="s10-fallback-door"><span className="s10-fallback-lock" aria-hidden="true">◌</span></div>
-    {opened ? <div className="s10-fallback-letter" aria-hidden="true">✦</div> : null}
+  return <div
+    className={`s10-fallback-object${opened ? " is-open" : ""}`}
+    data-testid="s10-vault-fallback"
+    aria-label={opened ? "Representasi sederhana Vault dalam keadaan terbuka" : "Representasi sederhana Vault dalam keadaan tertutup"}
+  >
+    <span className="s10-fallback-badge">Mode visual sederhana</span>
+    <div className="s10-fallback-body" aria-hidden="true">
+      <div className="s10-fallback-letter">✦</div>
+      <div className="s10-fallback-door"><span className="s10-fallback-lock">◌</span></div>
+    </div>
+    <p>{opened ? "Representasi sederhana menunjukkan ruang surat terbuka." : "Representasi sederhana menunjukkan Vault tertutup."}</p>
   </div>;
 }
 
@@ -207,19 +218,19 @@ export function S10Vault() {
   const [openRequest, setOpenRequest] = useState(0);
   const [opened, setOpened] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const submissionPendingRef = useRef(false);
 
   useEffect(() => {
-    let renderer: THREE.WebGLRenderer | null = null;
     let cancelled = false;
     let available = false;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "low-power" });
-      available = true;
+      const probe = document.createElement("canvas");
+      const context = probe.getContext("webgl2", { powerPreference: "low-power" }) ?? probe.getContext("webgl", { powerPreference: "low-power" });
+      available = context !== null;
+      context?.getExtension("WEBGL_lose_context")?.loseContext();
+      probe.remove();
     } catch {
       available = false;
-    } finally {
-      renderer?.dispose();
-      renderer?.domElement.remove();
     }
     const timer = window.setTimeout(() => {
       if (!cancelled) setWebglAvailable(available);
@@ -231,26 +242,45 @@ export function S10Vault() {
     if (experienceRuntime.getState().vault.status === "loading") void experienceRuntime.dispatch({ type: "VAULT_READY" });
   }, []);
   const handleOpened = useCallback(() => setOpened(true), []);
-  const handleFailure = useCallback(() => setAssetFailed(true), []);
+  const handleFailure = useCallback(() => {
+    setAssetFailed(true);
+    const state = experienceRuntime.getState();
+    if (state.vault.status === "loading") void experienceRuntime.dispatch({ type: "VAULT_READY" });
+    if (state.vault.status === "doorOpening") setOpened(true);
+  }, []);
+  const fallback = webglAvailable === false || assetFailed;
+
+  useEffect(() => {
+    if (fallback && experienceRuntime.getState().vault.status === "loading") {
+      void experienceRuntime.dispatch({ type: "VAULT_READY" });
+    }
+  }, [fallback]);
+
   const handleSubmit = async () => {
-    if (pin.length !== 6 || opened || vaultStatus === "doorOpening") return;
+    if (pin.length !== 6 || opened || vaultStatus === "doorOpening" || submissionPendingRef.current) return;
+    submissionPendingRef.current = true;
     setError(null);
-    const result = await experienceRuntime.dispatch({ type: "SUBMIT_VAULT_PIN", pin });
-    if (result.status !== "applied") { setError("Kode belum bisa digunakan. Coba lagi, ya."); return; }
-    if (!experienceRuntime.getState().vault.pinAccepted) { setError("Kodenya belum tepat. Coba lagi, ya."); return; }
-    await experienceRuntime.dispatch({ type: "BEGIN_VAULT_OPENING" });
-    setOpenRequest((value) => value + 1);
+    try {
+      const result = await experienceRuntime.dispatch({ type: "SUBMIT_VAULT_PIN", pin });
+      if (result.status !== "applied") { setError("Kode belum bisa digunakan. Coba lagi, ya."); return; }
+      if (!experienceRuntime.getState().vault.pinAccepted) { setError("Kodenya belum tepat. Coba lagi, ya."); return; }
+      const opening = await experienceRuntime.dispatch({ type: "BEGIN_VAULT_OPENING" });
+      if (opening.status !== "applied") { setError("Vault belum bisa dibuka. Coba lagi, ya."); return; }
+      if (fallback) setOpened(true);
+      else setOpenRequest((value) => value + 1);
+    } finally {
+      submissionPendingRef.current = false;
+    }
   };
   const continueToLetterBoundary = async () => {
     if (!opened) return;
     await experienceRuntime.dispatch({ type: "COMPLETE_VAULT_OPENING" });
   };
-  const fallback = webglAvailable === false || assetFailed;
   const isOpening = vaultStatus === "doorOpening";
   const isReady = ["ready", "pinRejected", "pinAccepted", "doorOpening"].includes(vaultStatus);
 
-  return <main className="s10-scene" data-testid="s10-scene" data-vault-status={vaultStatus} data-reduced-motion={reducedMotion ? "true" : "false"}>
-    <img className="s10-offset-accent" src="/assets/svg/signature/offset-loop-open.svg" alt="" aria-hidden="true" />
+  return <main className="s10-scene" data-testid="s10-scene" data-vault-status={vaultStatus} data-renderer-mode={fallback ? "fallback" : webglAvailable === true ? "webgl" : "probing"} data-door-state={opened ? "open" : isOpening ? "opening" : "closed"} data-reduced-motion={reducedMotion ? "true" : "false"}>
+    <span className="s10-offset-accent" aria-hidden="true" />
     <p className="s10-kicker">THE LAST / 10 · THE QUIET KEEPSAKE VAULT</p>
     <div className="s10-layout">
       <section className="s10-visual" aria-label="Visual Vault">
@@ -261,7 +291,7 @@ export function S10Vault() {
         <p className="s10-overline">Sebuah ruang kecil untuk satu hal yang disimpan.</p>
         <h1 id="s10-title">Pelan-pelan, buka yang ada di dalam.</h1>
         <p className="s10-intro">Kode ini hanya sebuah tanda. Tidak ada yang perlu diburu.</p>
-        <div className="s10-status" aria-live="polite">{isOpening ? "Kuncinya bergerak..." : opened ? "Pintunya terbuka. Suratnya menunggu untuk dipilih." : isReady ? "Ruangnya siap." : "Ruangnya sedang disiapkan."}</div>
+        <div className="s10-status" aria-live="polite">{isOpening && !opened ? (fallback ? "Mode sederhana sedang membuka ruang surat..." : "Kuncinya bergerak...") : opened ? (fallback ? "Ruang surat terlihat dalam mode sederhana." : "Pintunya terbuka. Suratnya menunggu untuk dipilih.") : isReady ? "Ruangnya siap." : "Ruangnya sedang disiapkan."}</div>
         {!opened ? <PinControl pin={pin} setPin={setPin} disabled={!isReady || isOpening} onSubmit={handleSubmit} /> : <button type="button" className="s10-letter-action" data-testid="s10-letter-action" onClick={continueToLetterBoundary}>Pilih suratnya</button>}
         {error ? <p className="s10-error" role="alert">{error}</p> : null}
         {invalidAttempts > 0 && !opened ? <p className="s10-attempts">Masih ada waktu untuk mencoba lagi.</p> : null}

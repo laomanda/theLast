@@ -11,6 +11,8 @@ import { S07BirthdayLetter } from "../s07/S07BirthdayLetter";
 import { S08FinalBirthdayMoment } from "../s08/S08FinalBirthdayMoment";
 import { S09HiddenDiscovery } from "../s09/S09HiddenDiscovery";
 import { S10Vault } from "../s10/S10Vault";
+import { S11PhysicalLetter } from "../s11/S11PhysicalLetter";
+import { S12FinalLetter } from "../s12/S12FinalLetter";
 
 function RuntimeBoundary({ scene }: { scene: string }) {
   return (
@@ -26,7 +28,7 @@ function RuntimeBoundary({ scene }: { scene: string }) {
   );
 }
 
-export type ScenePresentation = "s01" | "s02" | "s03" | "s04" | "s05" | "s06" | "s07" | "s08" | "s09" | "s10" | "runtime-boundary";
+export type ScenePresentation = "s01" | "s02" | "s03" | "s04" | "s05" | "s06" | "s07" | "s08" | "s09" | "s10" | "s11" | "s12" | "runtime-boundary";
 
 export function scenePresentationKind(scene: string): ScenePresentation {
   if (scene === "S01") return "s01";
@@ -39,6 +41,8 @@ export function scenePresentationKind(scene: string): ScenePresentation {
   if (scene === "S08") return "s08";
   if (scene === "S09") return "s09";
   if (scene === "S10") return "s10";
+  if (scene === "S11") return "s11";
+  if (scene === "S12") return "s12";
   return "runtime-boundary";
 }
 
@@ -66,6 +70,10 @@ export function ExperienceShell() {
       return <S09HiddenDiscovery />;
     case "s10":
       return <S10Vault />;
+    case "s11":
+      return <S11PhysicalLetter />;
+    case "s12":
+      return <S12FinalLetter />;
     default:
       // No unimplemented or unexpected scene may masquerade as a production renderer.
       return <RuntimeBoundary scene={scene} />;

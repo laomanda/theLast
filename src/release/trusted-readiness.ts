@@ -21,8 +21,8 @@ const TRUSTED_IMPLEMENTATION_RECORDS: readonly TrustedImplementationRecord[] = O
   { sceneId: "S08", rendererPresent: true, developmentBoundary: false },
   { sceneId: "S09", rendererPresent: true, developmentBoundary: false },
   { sceneId: "S10", rendererPresent: true, developmentBoundary: false },
-  { sceneId: "S11", rendererPresent: false, developmentBoundary: false },
-  { sceneId: "S12", rendererPresent: false, developmentBoundary: false },
+  { sceneId: "S11", rendererPresent: true, developmentBoundary: false },
+  { sceneId: "S12", rendererPresent: true, developmentBoundary: false },
 ]);
 
 /** Empty until a real owner-approved acceptance record exists. */

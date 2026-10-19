@@ -114,7 +114,9 @@ describe("CP-01D.2 complete release validator", () => {
     expect(result.checks).toContainEqual(expect.objectContaining({ reasonCode: "SCENE_ACCEPTANCE_EVIDENCE_MISSING", affectedScene: "S07" }));
     expect(result.checks).toContainEqual(expect.objectContaining({ reasonCode: "SCENE_ACCEPTANCE_EVIDENCE_MISSING", affectedScene: "S08" }));
     expect(result.checks).toContainEqual(expect.objectContaining({ reasonCode: "SCENE_ACCEPTANCE_EVIDENCE_MISSING", affectedScene: "S09" }));
-    for (const sceneId of ["S11", "S12"]) expect(result.checks).toContainEqual(expect.objectContaining({ reasonCode: "CANONICAL_SCENE_RENDERER_MISSING", affectedScene: sceneId }));
+    expect(result.checks).not.toContainEqual(expect.objectContaining({ reasonCode: "CANONICAL_SCENE_RENDERER_MISSING", affectedScene: "S12" }));
+    expect(result.checks).toContainEqual(expect.objectContaining({ reasonCode: "CANONICAL_SCENE_CONTENT_UNVERIFIED", affectedScene: "S12" }));
+    expect(result.checks).not.toContainEqual(expect.objectContaining({ reasonCode: "CANONICAL_SCENE_RENDERER_MISSING", affectedScene: "S11" }));
     expect(result.checks).not.toContainEqual(expect.objectContaining({ reasonCode: "CANONICAL_SCENE_RENDERER_MISSING", affectedScene: "S10" }));
   });
 

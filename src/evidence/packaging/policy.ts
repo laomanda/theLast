@@ -42,6 +42,18 @@ const approvedScreenshotPaths = [
   "planning/evidence/screenshots/s10-production/s10-desktop-locked-1440x900.png",
   "planning/evidence/screenshots/s10-production/s10-desktop-opened-1440x900.png",
   "planning/evidence/screenshots/s10-production/s10-mobile-reduced-opened-390x844.png",
+  "planning/evidence/screenshots/s11/s11-mobile-folded-360x800.png",
+  "planning/evidence/screenshots/s11/s11-mobile-folded-390x844.png",
+  "planning/evidence/screenshots/s11/s11-mobile-unfolding-390x844.png",
+  "planning/evidence/screenshots/s11/s11-mobile-opened-390x844.png",
+  "planning/evidence/screenshots/s11/s11-desktop-folded-1440x900.png",
+  "planning/evidence/screenshots/s11/s11-desktop-opened-1440x900.png",
+  "planning/evidence/screenshots/s11/s11-reduced-opened-768x1024.png",
+  "planning/evidence/screenshots/s12/s12-mobile-initial-390x844.png",
+  "planning/evidence/screenshots/s12/s12-mobile-final-390x844.png",
+  "planning/evidence/screenshots/s12/s12-desktop-initial-1440x900.png",
+  "planning/evidence/screenshots/s12/s12-desktop-final-1440x900.png",
+  "planning/evidence/screenshots/s12/s12-reduced-initial-768x1024.png",
 ] as const;
 const approvedScreenshotPathSet: ReadonlySet<string> = new Set(approvedScreenshotPaths);
 

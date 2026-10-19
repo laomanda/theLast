@@ -4,6 +4,8 @@ import { createExperienceRuntime } from "../../src/state/experience-store";
 import { scenePresentationKind } from "../../src/ui/shell/ExperienceShell";
 import { S08_CONTENT, S08_CONTENT_STATUS } from "../../src/ui/s08/s08-content";
 import { applyCakeOption } from "../../src/cake/configuration";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 async function reachS08(runtime: ReturnType<typeof createExperienceRuntime>) {
   await runtime.dispatch({ type: "SHELL_READY" });
@@ -51,5 +53,12 @@ describe("S08 Final Birthday Moment", () => {
   it("keeps S08 personal closing text explicitly pending", () => {
     expect(S08_CONTENT_STATUS).toBe("CONTENT_PENDING");
     expect(S08_CONTENT.status).toBe("CONTENT_PENDING");
+  });
+
+  it("keeps the optional arm genuinely discoverable and gives End a real local state", () => {
+    const source = readFileSync(path.resolve("src/ui/s08/S08FinalBirthdayMoment.tsx"), "utf8");
+    expect(source).toContain("Temukan lapisan lain");
+    expect(source).toContain('data-testid="s08-ended"');
+    expect(source).not.toContain("window.scrollTo");
   });
 });

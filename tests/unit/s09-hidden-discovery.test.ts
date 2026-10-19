@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { createExperienceRuntime } from "../../src/state/experience-store";
 import { scenePresentationKind } from "../../src/ui/shell/ExperienceShell";
 import { applyCakeOption } from "../../src/cake/configuration";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 
 async function reachS08(runtime: ReturnType<typeof createExperienceRuntime>) {
   await runtime.dispatch({ type: "SHELL_READY" }); await runtime.dispatch({ type: "OPEN_INVITATION" });
@@ -19,5 +21,14 @@ describe("S09 Hidden Discovery", () => {
     expect(await runtime.dispatch({ type: "ARM_HIDDEN_PORTAL" })).toMatchObject({ status: "applied" });
     expect(await runtime.dispatch({ type: "COMMIT_HIDDEN_PORTAL" })).toMatchObject({ status: "committed", target: "S09" });
     expect(await runtime.dispatch({ type: "HIDDEN_SPACE_READY" })).toMatchObject({ status: "committed", target: "S10" });
+  });
+  it("implements a bounded gesture gate with cancellation, keyboard access, and the approved Offset Loop", () => {
+    const source = readFileSync(path.resolve("src/ui/s09/S09HiddenDiscovery.tsx"), "utf8");
+    expect(source).toContain("COMMIT_PROGRESS = 0.62");
+    expect(source).toContain("onPointerCancel");
+    expect(source).toContain("onKeyDown");
+    expect(source).toContain("offset-loop-open.svg");
+    expect(source).toContain('type: "HIDDEN_SPACE_READY"');
+    expect(source).not.toContain("PASSIVE_SCROLL");
   });
 });
