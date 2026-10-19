@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" id="b02-root" aria-hidden="true" focusable="false">
-    <path id="b02-top" d="M36,70 L36,50 L150,50" fill="none" stroke="#E67A6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <path id="b02-right" d="M186,50 L204,50 L204,186" fill="none" stroke="#E67A6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <path id="b02-bottom" d="M204,214 L204,262 L120,262" fill="none" stroke="#E67A6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <path id="b02-left" d="M92,266 L36,266 L36,236" fill="none" stroke="#E67A6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>

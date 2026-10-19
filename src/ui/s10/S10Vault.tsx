@@ -7,19 +7,12 @@ import { Component, Suspense, useCallback, useEffect, useLayoutEffect, useRef, u
 import * as THREE from "three";
 import type { Group } from "three";
 import { experienceRuntime, useExperienceStore } from "../../state/experience-store";
-// @ts-expect-error The approved runtime helper is an asset-package .mjs module without a declaration file.
-import { createWorldAxisHingeAdapter as createWorldAxisHingeAdapterUntyped } from "../../../assets-final/vault/runtime/hinge.mjs";
+import { createWorldAxisHingeAdapter } from "./hinge-adapter";
 import { usePrefersReducedMotion } from "../s01/S01Prelude";
 
 const VAULT_PUBLIC_PATH = "/assets/vault/vault-final.glb";
 const VAULT_SHA256 = "9BC128A9C020AA2604F5E9B6AA7A72534ADAE300506C37255196A47227DC2A2B";
-type HingeAdapter = { setAngleDegrees: (degrees: number) => void; reset: () => void };
-const createWorldAxisHingeAdapter = createWorldAxisHingeAdapterUntyped as unknown as (
-  three: typeof THREE,
-  pivot: THREE.Object3D,
-  axis: THREE.Vector3,
-  sign?: number,
-) => HingeAdapter;
+type HingeAdapter = ReturnType<typeof createWorldAxisHingeAdapter>;
 
 function StudioCamera({ open }: { open: boolean }) {
   const { camera, size } = useThree();
@@ -74,7 +67,7 @@ function VaultModel({
     const pivot = root.getObjectByName("Door_Hinge_Pivot");
     if (!pivot) throw new Error("Vault V2 contract missing Door_Hinge_Pivot");
     pivotRef.current = pivot;
-    adapterRef.current = createWorldAxisHingeAdapter(THREE, pivot, new THREE.Vector3(0, 1, 0), 1);
+    adapterRef.current = createWorldAxisHingeAdapter(pivot, new THREE.Vector3(0, 1, 0), 1);
     adapterRef.current.setAngleDegrees(0);
     if (!readyRef.current) { readyRef.current = true; onReady(); }
     return () => {
