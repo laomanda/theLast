@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { runtimeTransitionCoordinator } from "../../runtime/transition-coordinator";
 import { experienceRuntime } from "../../state/experience-store";
 import { MalicaLoadingMark } from "./MalicaLoadingMark";
+import { S01LoadingOrnaments } from "./S01LoadingOrnaments";
 import {
   evaluateCriticalReadiness,
   getControlledReadinessFixtureMode,
@@ -383,6 +384,7 @@ export function S01Prelude() {
             }, remaining);
           }
         }
+
       } catch {
         if (cancelled) return;
         setReadinessReport({
@@ -486,6 +488,8 @@ export function S01Prelude() {
       <header className="w-full flex justify-between items-center opacity-0 pointer-events-none" aria-hidden="true">
         <span className="font-mono text-xs">theLast</span>
       </header>
+
+      <S01LoadingOrnaments />
 
       {/* Main Composition: Centerpiece Motif + Hero Display Typography */}
       <section

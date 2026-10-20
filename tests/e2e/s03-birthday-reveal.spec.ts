@@ -87,6 +87,35 @@ test.describe("S03 Birthday Reveal production scene", () => {
     });
   }
 
+  test("keeps paperworld discoveries keyboard-accessible with exactly two-word reveals", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await gotoS03(page);
+
+    const discoveries = [
+      ["Buka bintang kertas", "Nineteen Cheers"],
+      ["Buka bunga kertas", "Bloom Bright"],
+      ["Buka hati kertas", "Stay Golden"],
+      ["Putar token ulang tahun", "Lucky You"],
+      ["Buka party popper", "Make Wishes"],
+      ["Tarik pita kertas", "Keep Shining"],
+    ] as const;
+
+    await page.getByRole("button", { name: "Lanjut", exact: true }).click();
+    await expect(page.getByText("Malica, buka enam kejutan dulu ya!", { exact: true })).toBeVisible();
+    await expect(page.getByTestId("s03-scene")).toBeVisible();
+
+    for (const [label, surprise] of discoveries) {
+      const ornament = page.getByRole("button", { name: label, exact: true });
+      await ornament.focus();
+      await ornament.press("Enter");
+      await expect(page.getByText(surprise, { exact: true })).toBeVisible();
+      expect(surprise.trim().split(/\s+/)).toHaveLength(2);
+    }
+
+    await page.getByRole("button", { name: "Lanjut", exact: true }).click();
+    await expect(page.getByTestId("s04-scene")).toBeVisible({ timeout: 5000 });
+  });
+
   test("captures the S02 to S03 kinetic frame sequence and focused CTA", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await gotoS02(page);

@@ -1,5 +1,4 @@
 import type { RefObject } from "react";
-import { OffsetLoopOpen } from "../s01/OffsetLoopOpen";
 
 export interface FoldedEditorialKeepsakeProps {
   rigRef: RefObject<HTMLDivElement | null>;
@@ -57,8 +56,11 @@ export function FoldedEditorialKeepsake({
 
         <div ref={leftFoldRef} className="s02-paper-panel s02-paper-left" data-testid="s02-left-fold">
           <span className="s02-fold-rule" />
-          <div ref={motifRef} className="s02-object-mark">
-            <OffsetLoopOpen staticMode className="h-full w-full" />
+          <div className="s02-cover-frame" aria-hidden="true" />
+          <div className="s02-object-mark">
+            <div ref={motifRef} className="s02-motif-scaler">
+              <span className="s02-monogram" aria-hidden="true">M</span>
+            </div>
           </div>
         </div>
 

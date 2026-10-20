@@ -13,7 +13,7 @@ const VIEWPORTS = [
 async function gotoS02(page: Page) {
   await page.goto("/");
   await expect(page.getByTestId("s02-scene")).toBeVisible({ timeout: 8000 });
-  await expect(page.getByRole("heading", { name: /Silahkan dibuka yaa|Ada sesuatu untukmu/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Silahkan dibuka|Ada sesuatu untukmu/ })).toBeVisible();
   await expect(page.getByRole("button", { name: "Open", exact: true })).toBeVisible();
 }
 

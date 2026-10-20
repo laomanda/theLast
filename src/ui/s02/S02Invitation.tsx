@@ -9,6 +9,44 @@ import { FoldedEditorialKeepsake } from "./FoldedEditorialKeepsake";
 
 type VisualPhase = "closed" | "opening" | "open";
 
+function S02PaperOpenButton({
+  disabled,
+  opening,
+  onOpen,
+  onHoverChange,
+}: {
+  disabled: boolean;
+  opening: boolean;
+  onOpen: () => void;
+  onHoverChange: (hovered: boolean) => void;
+}) {
+  return (
+    <button
+      type="button"
+      className="s02-paper-tab"
+      data-opening={opening || undefined}
+      onClick={onOpen}
+      onMouseEnter={() => onHoverChange(true)}
+      onMouseLeave={() => onHoverChange(false)}
+      disabled={disabled}
+      aria-busy={opening}
+      aria-label="Open"
+    >
+      <svg viewBox="0 0 300 92" aria-hidden="true" focusable="false">
+        <path className="s02-paper-tab__back" d="M18 27 C33 17 59 14 94 17 L260 20 C280 21 291 33 286 49 C281 63 268 70 245 72 L61 78 C35 78 18 67 14 50 C11 40 12 32 18 27Z" />
+        <path className="s02-paper-tab__surface" d="M15 22 C28 12 54 10 91 13 L253 17 C274 18 285 29 281 44 C277 58 264 65 241 67 L59 74 C34 74 18 63 13 47 C10 36 10 28 15 22Z" />
+        <path className="s02-paper-tab__fold" d="M27 23 C50 18 78 18 110 20 L229 23 C242 23 251 26 258 30 C214 27 168 31 124 34 L59 39 C43 40 32 34 27 23Z" />
+        <path className="s02-paper-tab__crease" d="M38 60 C89 56 142 61 194 56" />
+        <path className="s02-paper-tab__pull" d="M235 21 C251 17 269 23 275 36 C282 50 272 62 256 67 C241 71 226 65 221 53 C216 40 222 26 235 21Z" />
+        <path className="s02-paper-tab__arrow" d="M237 45 H260 M253 37 L262 45 L253 53" />
+        <path className="s02-paper-tab__accent s02-paper-tab__accent--one" d="M275 14 L281 7" />
+        <path className="s02-paper-tab__accent s02-paper-tab__accent--two" d="M285 19 L294 16" />
+        <text className="s02-paper-tab__label" x="43" y="50">OPEN</text>
+      </svg>
+    </button>
+  );
+}
+
 export function S02Invitation() {
   const sceneRef = useRef<HTMLElement | null>(null);
   const copyRef = useRef<HTMLDivElement | null>(null);
@@ -43,9 +81,6 @@ export function S02Invitation() {
     if (innerRef.current) gsap.set(innerRef.current, { opacity: 0.78 });
     if (motifRef.current) {
       gsap.set(motifRef.current, {
-        xPercent: -50,
-        yPercent: -50,
-        rotationY: 180,
         scale: 1,
         opacity: 1,
       });
@@ -134,9 +169,6 @@ export function S02Invitation() {
           if (innerRef.current) gsap.set(innerRef.current, { opacity: 1 });
           if (motifRef.current) {
             gsap.set(motifRef.current, {
-              xPercent: -50,
-              yPercent: -50,
-              rotationY: 180,
               opacity: 0.72,
               scale: 0.86,
             });
@@ -175,8 +207,8 @@ export function S02Invitation() {
             .call(() => {
               if (mountedRef.current) setVisualPhase("open");
             }, [], 1.16)
-            // Let the settled open pose register before the guarded commit.
-            .to({}, { duration: 0.52 });
+            // Keep the handoff responsive while preserving a single settled frame.
+            .to({}, { duration: 0.12 });
         });
       },
     );
@@ -204,7 +236,17 @@ export function S02Invitation() {
       aria-labelledby="s02-title"
       className="s02-scene"
     >
+
       <section className="s02-composition">
+        <div className="s02-ambient-arc" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/svg/celebration/celebration-arc.svg"
+            alt=""
+            className="s02-arc-graphic"
+          />
+        </div>
+
         <div className="s02-object-column">
           <FoldedEditorialKeepsake
             rigRef={rigRef}
@@ -223,24 +265,16 @@ export function S02Invitation() {
         </div>
 
         <div ref={copyRef} className="s02-copy-column">
-          <h1 id="s02-title" className="s02-title">Silahkan dibuka yaa 🎂.</h1>
+          <h1 id="s02-title" className="s02-title">Silahkan dibuka ya.</h1>
           <p className="s02-subtitle">Sebuah lipatan kecil, disiapkan khusus untuk orang spesial.</p>
-          <button
-            type="button"
-            onClick={handleOpen}
-            onMouseEnter={() => handleHoverStateChange(true)}
-            onMouseLeave={() => handleHoverStateChange(false)}
-            disabled={transitionActive}
-            aria-busy={transitionActive}
-            className="s02-open-action"
-          >
-            <span className="s02-open-label">Open</span>
-            <span aria-hidden="true" className="s02-open-arrow">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </span>
-          </button>
+          <div className="s02-action-wrapper">
+            <S02PaperOpenButton
+              onOpen={handleOpen}
+              onHoverChange={handleHoverStateChange}
+              disabled={transitionActive}
+              opening={transitionActive || visualPhase === "opening"}
+            />
+          </div>
           {actionError && <p role="alert" className="s02-action-error">{actionError}</p>}
         </div>
       </section>
