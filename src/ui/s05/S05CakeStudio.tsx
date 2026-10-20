@@ -189,7 +189,6 @@ export function S05CakeStudio() {
       <section className="s05-layout">
         <div ref={stageRef} className="s05-stage">
           <div className="s05-heading-block">
-            <p>Birthday Cake Studio</p>
             <h1 id="s05-title">Hias kuemu.</h1>
           </div>
           <div ref={cakeFeedbackRef} className="s05-cake-object">
