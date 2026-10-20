@@ -37,6 +37,8 @@ export function S02Invitation() {
       scale: 1,
       y: 0,
       rotation: -1.25,
+      rotationX: 0,
+      rotationY: 0,
     });
     if (innerRef.current) gsap.set(innerRef.current, { opacity: 0.78 });
     if (motifRef.current) {
@@ -51,6 +53,41 @@ export function S02Invitation() {
     if (shadowRef.current) gsap.set(shadowRef.current, { scale: 1, opacity: 0.76 });
     setVisualPhase("closed");
   }, []);
+
+  const handleHoverStateChange = useCallback((hovered: boolean) => {
+    if (prefersReducedMotion || visualPhase !== "closed" || !leftFoldRef.current) return;
+    gsap.to(leftFoldRef.current, {
+      rotationY: hovered ? 160 : 170,
+      duration: hovered ? 0.35 : 0.45,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+  }, [prefersReducedMotion, visualPhase]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion || visualPhase !== "closed" || !rigRef.current) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    gsap.to(rigRef.current, {
+      rotationY: x * 8,
+      rotationX: -y * 6,
+      duration: 0.35,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+  }, [prefersReducedMotion, visualPhase]);
+
+  const handlePointerLeave = useCallback(() => {
+    if (prefersReducedMotion || visualPhase !== "closed" || !rigRef.current) return;
+    gsap.to(rigRef.current, {
+      rotationY: 0,
+      rotationX: 0,
+      duration: 0.5,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+  }, [prefersReducedMotion, visualPhase]);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -93,7 +130,7 @@ export function S02Invitation() {
         if (prefersReducedMotion) {
           gsap.set(leftFoldRef.current, { rotationY: 0 });
           gsap.set(rightFoldRef.current, { rotationY: 0 });
-          gsap.set(rigRef.current, { rotation: 0, scale: 1 });
+          gsap.set(rigRef.current, { rotation: 0, rotationX: 0, rotationY: 0, scale: 1 });
           if (innerRef.current) gsap.set(innerRef.current, { opacity: 1 });
           if (motifRef.current) {
             gsap.set(motifRef.current, {
@@ -127,7 +164,7 @@ export function S02Invitation() {
           signal.addEventListener("abort", onAbort, { once: true });
           openTimelineRef.current = gsap
             .timeline({ onComplete: () => finish(true) })
-            .to(rigRef.current, { scale: 0.985, y: 3, duration: 0.12, ease: "power1.out" })
+            .to(rigRef.current, { scale: 0.985, y: 3, rotationX: 0, rotationY: 0, duration: 0.12, ease: "power1.out" })
             .to(leftFoldRef.current, { rotationY: 4, duration: 0.64, ease: "power3.inOut" }, 0.12)
             .to(rightFoldRef.current, { rotationY: -4, duration: 0.72, ease: "power3.inOut" }, 0.34)
             .to(innerRef.current, { opacity: 1, duration: 0.38, ease: "power2.out" }, 0.55)
@@ -167,7 +204,6 @@ export function S02Invitation() {
       aria-labelledby="s02-title"
       className="s02-scene"
     >
-
       <section className="s02-composition">
         <div className="s02-object-column">
           <FoldedEditorialKeepsake
@@ -179,20 +215,31 @@ export function S02Invitation() {
             shadowRef={shadowRef}
             assetAvailable={assetAvailable}
             onAssetError={() => setAssetAvailable(false)}
+            onOpen={handleOpen}
+            onHoverStateChange={handleHoverStateChange}
+            onPointerMove={handlePointerMove}
+            onPointerLeave={handlePointerLeave}
           />
         </div>
 
         <div ref={copyRef} className="s02-copy-column">
           <h1 id="s02-title" className="s02-title">Silahkan dibuka yaa 🎂.</h1>
+          <p className="s02-subtitle">Sebuah lipatan kecil, disiapkan khusus untuk orang spesial.</p>
           <button
             type="button"
             onClick={handleOpen}
+            onMouseEnter={() => handleHoverStateChange(true)}
+            onMouseLeave={() => handleHoverStateChange(false)}
             disabled={transitionActive}
             aria-busy={transitionActive}
             className="s02-open-action"
           >
-            <span>Open</span>
-            <span aria-hidden="true" className="s02-open-arrow">↗</span>
+            <span className="s02-open-label">Open</span>
+            <span aria-hidden="true" className="s02-open-arrow">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
           </button>
           {actionError && <p role="alert" className="s02-action-error">{actionError}</p>}
         </div>
