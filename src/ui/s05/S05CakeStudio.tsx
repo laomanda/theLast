@@ -186,7 +186,6 @@ export function S05CakeStudio() {
       aria-labelledby="s05-title"
       className="s05-scene"
     >
-      <div className="s05-scene-index" aria-hidden="true">THE LAST / 05</div>
       <section className="s05-layout">
         <div ref={stageRef} className="s05-stage">
           <div className="s05-heading-block">

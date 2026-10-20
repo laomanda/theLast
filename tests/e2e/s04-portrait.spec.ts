@@ -5,6 +5,16 @@ async function gotoS04(page: Page) {
   await expect(page.getByTestId("s02-scene")).toBeVisible({ timeout: 8000 });
   await page.getByRole("button", { name: "Open", exact: true }).click();
   await expect(page.getByTestId("s03-scene")).toBeVisible({ timeout: 6000 });
+  for (const name of [
+    "Buka bintang kertas",
+    "Buka bunga kertas",
+    "Buka hati kertas",
+    "Putar token ulang tahun",
+    "Buka party popper",
+    "Tarik pita kertas",
+  ]) {
+    await page.getByRole("button", { name, exact: true }).click();
+  }
   await page.getByRole("button", { name: "Lanjut", exact: true }).click();
   await expect(page.getByTestId("s04-scene")).toBeVisible({ timeout: 6000 });
   await expect(page.getByTestId("s04-scene")).toHaveAttribute("data-visual-phase", "stable", { timeout: 5000 });
@@ -24,6 +34,7 @@ test.describe("S04 single portrait editorial scene", () => {
       await expect(page.locator("[data-photo-role='single-authorized-portrait']")).toHaveCount(1);
       await expect(page.getByRole("heading", { name: "Malica Yohana Hutagaol" })).toBeVisible();
       await expect(page.getByRole("button", { name: "Lanjut", exact: true })).toBeVisible();
+      await expect(page.getByTestId("s04-scene")).toHaveAttribute("data-photo-state", "ready", { timeout: 5000 });
       const metrics = await portrait.evaluate((element: HTMLImageElement) => ({
         complete: element.complete,
         naturalWidth: element.naturalWidth,
@@ -52,8 +63,48 @@ test.describe("S04 single portrait editorial scene", () => {
       visibility: getComputedStyle(element).visibility,
     }));
     expect(pose).toEqual({ opacity: "1", visibility: "visible" });
+    const butterfly = page.getByRole("button", { name: "Sentuh kupu-kupu untuk melihatnya terbang" });
+    const hint = page.getByRole("button", { name: "Psst... sentuh aku!" });
+    await expect(hint).toBeVisible();
+    await butterfly.press("Enter");
+    await expect(hint).toHaveCount(0);
     await page.getByRole("button", { name: "Lanjut", exact: true }).click();
     await expect(page.getByTestId("s05-scene")).toBeVisible({ timeout: 5000 });
+  });
+
+  test("lets the paper butterfly fly and return to the portrait corner", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await gotoS04(page);
+    const butterfly = page.getByRole("button", { name: "Sentuh kupu-kupu untuk melihatnya terbang" });
+    await expect(butterfly).toHaveAttribute("data-phase", "resting");
+    await butterfly.click();
+    await expect(butterfly).not.toHaveAttribute("data-phase", "resting");
+    await expect(butterfly).toHaveAttribute("data-phase", "resting", { timeout: 7000 });
+  });
+
+  test("shows the butterfly whisper once, then resets after reload", async ({ page }) => {
+    test.setTimeout(45000);
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await gotoS04(page);
+    const butterfly = page.getByRole("button", { name: "Sentuh kupu-kupu untuk melihatnya terbang" });
+    const hint = page.getByRole("button", { name: "Psst... sentuh aku!" });
+    await expect(hint).toBeVisible({ timeout: 4000 });
+    await butterfly.click();
+    await expect(hint).toBeHidden();
+    await expect(butterfly).toHaveAttribute("data-phase", "resting", { timeout: 12000 });
+    await butterfly.click();
+    await expect(hint).toHaveCount(0);
+    await expect(butterfly).toHaveAttribute("data-phase", "resting", { timeout: 12000 });
+    await page.reload();
+    await expect.poll(() => page.evaluate(() => window.sessionStorage.getItem("the-last:s04-butterfly-hint-consumed"))).toBeNull();
+  });
+
+  test("consumes the whisper even when the butterfly is activated before its delay", async ({ page }) => {
+    await gotoS04(page);
+    const butterfly = page.getByRole("button", { name: "Sentuh kupu-kupu untuk melihatnya terbang" });
+    await butterfly.press("Enter");
+    await page.waitForTimeout(1800);
+    await expect(page.getByRole("button", { name: "Psst... sentuh aku!" })).toHaveCount(0);
   });
 
   test("keeps the scene operable when the authorized derivative cannot load", async ({ page }) => {

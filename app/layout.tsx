@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
 import { bricolageGrotesque, newsreader, shantellSans } from "@/src/ui/fonts";
+import { FoldedPointer } from "@/src/ui/cursor/FoldedPointer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({
     >
       <body className="bg-[#F6F1E8] text-[#2C282A] antialiased">
         {children}
+        <FoldedPointer />
       </body>
     </html>
   );
