@@ -12,7 +12,6 @@ export const S03_RECIPIENT_NAME = "Malica Yohana Hutagaol";
 export const S03_FULL_GREETING = `Happy Birthday, ${S03_RECIPIENT_NAME}.`;
 export const S03_CTA_LABEL = "Lanjut";
 const S03_BURST_PARTICLES = Array.from({ length: 140 }, (_, index) => index);
-
 function S03LowerGraphics() {
   return (
     <>
@@ -36,24 +35,42 @@ function S03LowerGraphics() {
 function S03PhysicsBurst() {
   const particleRefs = useRef<(HTMLElement | null)[]>([]);
   const burstRef = useRef<HTMLDivElement | null>(null);
+  const [particleCount, setParticleCount] = useState(0);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const count = window.innerWidth < 600 ? 260 : 480;
+    const compact = window.innerWidth < 600;
+    const tablet = window.innerWidth < 1024;
+    const dprPenalty = window.devicePixelRatio > 1.5;
+    const count = compact ? (dprPenalty ? 110 : 150) : tablet ? (dprPenalty ? 170 : 220) : (dprPenalty ? 250 : 320);
+    const frame = requestAnimationFrame(() => setParticleCount(count));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  useEffect(() => {
+    if (!particleCount || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let pointerX = -1000;
     let pointerY = -1000;
-    const particles = Array.from({ length: count }, (_, index) => ({
+    let pointerActive = false;
+    const particles = Array.from({ length: particleCount }, (_, index) => ({
       x: window.innerWidth * ((index * 0.618033) % 1), y: -20 - (index % 8) * 18,
       vx: ((index * 37) % 180) - 90, vy: 28 + (index % 9) * 10,
       gravity: 115 + (index % 5) * 24, drag: 0.989 + (index % 4) * 0.002,
       rotation: index * 19, spin: ((index % 7) - 3) * 2.5,
       settled: false,
-      delay: (index / count) * 2600,
+      delay: (index / particleCount) * 2600,
     }));
     let frame = 0;
     let last = performance.now();
     const startedAt = performance.now();
-    const handlePointerMove = (event: PointerEvent) => { pointerX = event.clientX; pointerY = event.clientY; };
-    const handlePointerLeave = () => { pointerX = -1000; pointerY = -1000; };
+    const handlePointerMove = (event: PointerEvent) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      pointerActive = true;
+      if (!frame) {
+        last = performance.now();
+        frame = requestAnimationFrame(tick);
+      }
+    };
+    const handlePointerLeave = () => { pointerX = -1000; pointerY = -1000; pointerActive = false; };
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerleave", handlePointerLeave, { passive: true });
     const tick = (now: number) => {
@@ -62,15 +79,19 @@ function S03PhysicsBurst() {
       const elapsed = now - startedAt;
       particles.forEach((particle, index) => {
         if (elapsed < particle.delay) return;
-        const dx = particle.x - pointerX;
-        const dy = particle.y - pointerY;
-        const distance = Math.hypot(dx, dy);
-        if (particle.settled && distance >= 92) return;
-        if (distance < 92) {
-          const force = (92 - distance) / 92;
-          particle.vx += (dx / Math.max(distance, 1)) * force * 420 * dt;
-          particle.vy -= force * 180 * dt;
-          particle.settled = false;
+        if (pointerActive) {
+          const dx = particle.x - pointerX;
+          const dy = particle.y - pointerY;
+          const distanceSquared = dx * dx + dy * dy;
+          if (!particle.settled || distanceSquared < 8464) {
+            const distance = Math.sqrt(distanceSquared);
+            if (distance < 92) {
+              const force = (92 - distance) / 92;
+              particle.vx += (dx / Math.max(distance, 1)) * force * 420 * dt;
+              particle.vy -= force * 180 * dt;
+              particle.settled = false;
+            }
+          }
         }
         particle.vy += particle.gravity * dt;
         particle.vx *= Math.pow(particle.drag, dt * 60);
@@ -88,7 +109,9 @@ function S03PhysicsBurst() {
         const node = particleRefs.current[index];
         if (node) node.style.transform = `translate3d(${particle.x}px, ${particle.y}px, 0) rotate(${particle.rotation}deg)`;
       });
-      if (particles.some((particle) => particle.y < window.innerHeight + 140)) frame = requestAnimationFrame(tick);
+      const active = particles.some((particle) => !particle.settled);
+      if (active) frame = requestAnimationFrame(tick);
+      else frame = 0;
     };
     frame = requestAnimationFrame(tick);
     return () => {
@@ -96,11 +119,11 @@ function S03PhysicsBurst() {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerleave", handlePointerLeave);
     };
-  }, []);
+  }, [particleCount]);
   const colors = ["#E67A6B", "#ECA06E", "#A79DCD", "#8794CC", "#F6F1E8"];
   const shapes = ["bead", "paper", "star", "ribbon"];
   return <div ref={burstRef} className="s03-physics-burst" aria-hidden="true">
-    {Array.from({ length: 480 }, (_, index) => (
+    {Array.from({ length: particleCount }, (_, index) => (
       <i key={index} ref={(node) => { particleRefs.current[index] = node; }} className={`s03-physics-particle s03-physics-particle--${shapes[index % shapes.length]}`} style={{ "--particle-color": colors[index % colors.length] } as CSSProperties} />
     ))}
   </div>;

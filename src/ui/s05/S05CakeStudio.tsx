@@ -55,7 +55,9 @@ type VisualPhase = "entering" | "active" | "exiting";
 export function S05CakeStudio() {
   const sceneRef = useRef<HTMLElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
+  const headingRef = useRef<HTMLDivElement | null>(null);
   const cakeFeedbackRef = useRef<HTMLDivElement | null>(null);
+  const propsRef = useRef<HTMLDivElement | null>(null);
   const trayRef = useRef<HTMLElement | null>(null);
   const entryTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const exitTimelineRef = useRef<gsap.core.Timeline | null>(null);
@@ -73,7 +75,7 @@ export function S05CakeStudio() {
   const [actionError, setActionError] = useState<string | null>(null);
 
   const settlePose = useCallback(() => {
-    gsap.set([stageRef.current, trayRef.current], { clearProps: "transform,opacity,visibility" });
+    gsap.set([stageRef.current, headingRef.current, cakeFeedbackRef.current, propsRef.current, trayRef.current], { clearProps: "transform,opacity,visibility" });
     setVisualPhase("active");
   }, []);
 
@@ -91,16 +93,20 @@ export function S05CakeStudio() {
   useLayoutEffect(() => {
     if (!sceneRef.current) return;
     if (prefersReducedMotion) {
-      gsap.set([stageRef.current, trayRef.current], { clearProps: "transform,opacity,visibility" });
+      gsap.set([headingRef.current, cakeFeedbackRef.current, propsRef.current, trayRef.current], { clearProps: "transform,opacity,visibility" });
       return;
     }
     const ctx = gsap.context(() => {
       entryTimelineRef.current = gsap.timeline({ defaults: { ease: "power3.out" } })
-        .set(stageRef.current, { opacity: 0, y: 22, scale: 0.985 })
-        .set(trayRef.current, { opacity: 0, y: 18 })
-        .to(stageRef.current, { opacity: 1, y: 0, scale: 1, duration: 0.62 }, 0)
-        .to(trayRef.current, { opacity: 1, y: 0, duration: 0.46 }, 0.25)
-        .call(() => mountedRef.current && setVisualPhase("active"), [], 0.82);
+        .set(headingRef.current, { opacity: 0, y: 16 })
+        .set(cakeFeedbackRef.current, { opacity: 0, y: 28, rotation: -1.4, scale: 0.965 })
+        .set(propsRef.current, { opacity: 0, y: 10 })
+        .set(trayRef.current, { opacity: 0, x: 20, y: 10 })
+        .to(headingRef.current, { opacity: 1, y: 0, duration: 0.5 }, 0)
+        .to(cakeFeedbackRef.current, { opacity: 1, y: 0, rotation: 0, scale: 1, duration: 0.72, ease: "back.out(1.18)" }, 0.12)
+        .to(propsRef.current, { opacity: 1, y: 0, duration: 0.42 }, 0.42)
+        .to(trayRef.current, { opacity: 1, x: 0, y: 0, duration: 0.55 }, 0.36)
+        .call(() => mountedRef.current && setVisualPhase("active"), [], 0.94);
     }, sceneRef);
     return () => ctx.revert();
   }, [prefersReducedMotion, settlePose]);
@@ -188,15 +194,30 @@ export function S05CakeStudio() {
     >
       <section className="s05-layout">
         <div ref={stageRef} className="s05-stage">
-          <div className="s05-heading-block">
+          <div ref={headingRef} className="s05-heading-block">
+            <p className="s05-kicker">The little cake atelier</p>
             <h1 id="s05-title">Hias kuemu.</h1>
+            <p className="s05-supporting-copy">Pilih sesuatu yang manis, lalu buat jadi milikmu.</p>
           </div>
           <div ref={cakeFeedbackRef} className="s05-cake-object">
             <CakeRenderer configuration={draft} />
           </div>
+          <div ref={propsRef} className="s05-stage-props" aria-hidden="true">
+            <svg className="s05-prop s05-prop--whisk" viewBox="0 0 110 180">
+              <path d="M56 111 25 169" /><path d="m49 108-31 56" /><path d="M51 108c-34-25-38-65-18-79 20-14 35 20 23 79Z" /><path d="M58 109c35-24 42-63 23-79-19-16-36 18-23 79Z" /><path d="M55 108c-4-39 1-79 20-84" />
+            </svg>
+            <svg className="s05-prop s05-prop--ribbon" viewBox="0 0 220 76">
+              <path d="M7 47c37-45 63 21 101-12s61 18 105-17" /><path d="m192 12 22 6-13 19" />
+            </svg>
+            <span className="s05-paper-scrap">made with care <b>✦</b></span>
+          </div>
         </div>
 
         <aside ref={trayRef} className="s05-tray" aria-label="Pilihan dekorasi kue">
+          <div className="s05-tray-heading">
+            <span>Decoration tray</span>
+            <i aria-hidden="true" />
+          </div>
           <div className="s05-category-tabs" role="tablist" aria-label="Kategori dekorasi">
             {categories.map((category) => (
               <button

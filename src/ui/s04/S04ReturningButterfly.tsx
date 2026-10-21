@@ -21,11 +21,15 @@ export function S04ReturningButterfly({
   sceneRef,
   reducedMotion,
   sceneSettled,
+  onInteract,
+  promptSignal,
 }: {
   anchorRef: RefObject<HTMLElement | null>;
   sceneRef: RefObject<HTMLElement | null>;
   reducedMotion: boolean;
   sceneSettled: boolean;
+  onInteract: () => void;
+  promptSignal: number;
 }) {
   const flightRootRef = useRef<HTMLDivElement | null>(null);
   const butterflyRef = useRef<HTMLButtonElement | null>(null);
@@ -33,6 +37,8 @@ export function S04ReturningButterfly({
   const flightTweenRef = useRef<gsap.core.Tween | null>(null);
   const flightTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const hintTweenRef = useRef<gsap.core.Tween | null>(null);
+  const promptTweenRef = useRef<gsap.core.Timeline | null>(null);
+  const sceneTweenRef = useRef<gsap.core.Tween | null>(null);
   const hintTimerRef = useRef<number | null>(null);
   const hintConsumedRef = useRef(false);
   const homeModeRef = useRef<"primary" | "secondary" | null>(null);
@@ -51,8 +57,13 @@ export function S04ReturningButterfly({
     const frame = anchorRef.current?.getBoundingClientRect();
     const scene = sceneRef.current?.getBoundingClientRect();
     if (!frame || !scene) return null;
-    const size = scene.width < 768 ? 23 : 34;
-    return { x: frame.left + frame.width * .59 - size, y: frame.top + frame.height * .17 - size };
+    const mobile = scene.width < 768;
+    const size = mobile ? 26 : 34;
+    // The mobile portrait is taller and narrower; keep the secondary rest point
+    // on the upper hair area instead of letting it drift over the face.
+    const targetX = mobile ? .63 : .59;
+    const targetY = mobile ? .115 : .17;
+    return { x: frame.left + frame.width * targetX - size, y: frame.top + frame.height * targetY - size };
   }, [anchorRef, sceneRef]);
 
   const homeAnchor = useCallback((): Point | null => {
@@ -89,8 +100,33 @@ export function S04ReturningButterfly({
     flightTweenRef.current?.kill();
     flightTimelineRef.current?.kill();
     hintTweenRef.current?.kill();
+    promptTweenRef.current?.kill();
+    sceneTweenRef.current?.kill();
     if (hintTimerRef.current !== null) window.clearTimeout(hintTimerRef.current);
   }, []);
+
+  useEffect(() => {
+    if (!flightRootRef.current) return;
+    sceneTweenRef.current?.kill();
+    if (reducedMotion) {
+      gsap.set(flightRootRef.current, { opacity: sceneSettled ? 1 : 0, scale: sceneSettled ? 1 : .78 });
+      return;
+    }
+    if (sceneSettled) {
+      sceneTweenRef.current = gsap.fromTo(flightRootRef.current,
+        { opacity: 0, scale: .68 },
+        { opacity: 1, scale: 1, duration: .52, delay: .16, ease: "back.out(1.35)", overwrite: "auto" },
+      );
+    } else {
+      sceneTweenRef.current = gsap.to(flightRootRef.current, {
+        opacity: 0,
+        scale: .76,
+        duration: .24,
+        ease: "power2.in",
+        overwrite: "auto",
+      });
+    }
+  }, [reducedMotion, sceneSettled]);
 
   useEffect(() => {
     if (hintState !== "available" || !sceneSettled || hintConsumedRef.current) return;
@@ -105,11 +141,29 @@ export function S04ReturningButterfly({
   }, [hintState, reducedMotion, sceneSettled]);
 
   useEffect(() => {
+    if (promptSignal === 0 || !sceneSettled || hintConsumedRef.current) return;
+    setHintState("available");
+    setHintVisible(true);
+  }, [promptSignal, sceneSettled]);
+
+  useEffect(() => {
     if (!hintVisible || !bubbleRef.current) return;
     if (reducedMotion) return;
     hintTweenRef.current?.kill();
     hintTweenRef.current = gsap.fromTo(bubbleRef.current, { opacity: 0, y: "+=7", scale: .9 }, { opacity: 1, y: "-=7", scale: 1, duration: .34, ease: "back.out(1.45)", clearProps: "opacity" });
   }, [hintVisible, reducedMotion]);
+
+  useEffect(() => {
+    if (promptSignal === 0 || reducedMotion || !bubbleRef.current) return;
+    promptTweenRef.current?.kill();
+    promptTweenRef.current = gsap.timeline({ defaults: { overwrite: "auto" } })
+      .set(bubbleRef.current, { x: 0 })
+      .to(bubbleRef.current, { x: -4, duration: .06, ease: "power1.out" })
+      .to(bubbleRef.current, { x: 4, duration: .08, ease: "power1.inOut" })
+      .to(bubbleRef.current, { x: -3, duration: .07, ease: "power1.inOut" })
+      .to(bubbleRef.current, { x: 3, duration: .07, ease: "power1.inOut" })
+      .to(bubbleRef.current, { x: 0, duration: .1, ease: "power2.out" });
+  }, [promptSignal, reducedMotion]);
 
   const consumeHint = () => {
     if (hintConsumedRef.current) return;
@@ -148,6 +202,7 @@ export function S04ReturningButterfly({
 
   const handleFlight = () => {
     if (phaseRef.current !== "resting" || !flightRootRef.current) return;
+    onInteract();
     consumeHint();
     if (reducedMotion) {
       setFlightPhase("landing");
@@ -226,7 +281,7 @@ export function S04ReturningButterfly({
         <path className="s04-butterfly-mark" d="M21 38 C28 35 34 40 38 47 M79 38 C72 35 66 40 62 47" />
       </svg>
     </button>
-    {(hintVisible || hintState === "exiting") && <button ref={bubbleRef} type="button" className="s04-butterfly-hint" onClick={handleFlight} aria-label="Psst... sentuh aku!"><span>Psst... sentuh aku!</span></button>}
+    {(hintVisible || hintState === "exiting") && <button ref={bubbleRef} type="button" className="s04-butterfly-hint" data-prompted={promptSignal > 0 ? promptSignal : undefined} onClick={handleFlight} aria-label="Psst... sentuh aku!"><span>Psst... sentuh aku!</span></button>}
     </div>
     </>
   );

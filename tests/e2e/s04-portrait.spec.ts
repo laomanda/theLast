@@ -72,6 +72,20 @@ test.describe("S04 single portrait editorial scene", () => {
     await expect(page.getByTestId("s05-scene")).toBeVisible({ timeout: 5000 });
   });
 
+  test("requires an intentional butterfly interaction before continuing", async ({ page }) => {
+    await gotoS04(page);
+    const continueButton = page.getByRole("button", { name: "Lanjut", exact: true });
+    const butterfly = page.getByRole("button", { name: "Sentuh kupu-kupu untuk melihatnya terbang" });
+    await expect(continueButton).toBeEnabled();
+    await continueButton.click();
+    await expect(page.getByTestId("s04-scene")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Psst... sentuh aku!" })).toBeVisible();
+    await butterfly.press("Enter");
+    await expect(continueButton).toBeEnabled();
+    await continueButton.click();
+    await expect(page.getByTestId("s05-scene")).toBeVisible({ timeout: 5000 });
+  });
+
   test("lets the paper butterfly fly and return to the portrait corner", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await gotoS04(page);
@@ -113,12 +127,14 @@ test.describe("S04 single portrait editorial scene", () => {
     await gotoS04(page);
     await expect(page.getByTestId("s04-scene")).toHaveAttribute("data-photo-state", "unavailable");
     await expect(page.getByRole("status")).toHaveText("Foto belum dapat dimuat.");
+    await page.getByRole("button", { name: "Sentuh kupu-kupu untuk melihatnya terbang" }).press("Enter");
     await page.getByRole("button", { name: "Lanjut", exact: true }).click();
     await expect(page.getByTestId("s05-scene")).toBeVisible({ timeout: 5000 });
   });
 
   test("coalesces rapid repeated continuation into one S05 scene", async ({ page }) => {
     await gotoS04(page);
+    await page.getByRole("button", { name: "Sentuh kupu-kupu untuk melihatnya terbang" }).press("Enter");
     await page.getByRole("button", { name: "Lanjut", exact: true }).evaluate((button: HTMLButtonElement) => {
       button.click();
       button.click();

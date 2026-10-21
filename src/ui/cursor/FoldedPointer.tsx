@@ -14,6 +14,10 @@ function getInteractiveTarget(target: EventTarget | null) {
   return target.closest<HTMLElement>("button, a[href], [role='button'], [role='link'], [data-cursor]");
 }
 
+function isCompactMenuTarget(target: EventTarget | null) {
+  return target instanceof Element && Boolean(target.closest(".s05-category-tab"));
+}
+
 function resolveState(target: EventTarget | null): CursorState {
   const element = getInteractiveTarget(target);
   if (!element) return "idle";
@@ -49,15 +53,19 @@ export function FoldedPointer() {
       stateRef.current = next;
       setState(next);
     };
+    const setPointerContext = (target: EventTarget | null) => {
+      pointer.dataset.context = isCompactMenuTarget(target) ? "compact-menu" : "default";
+    };
     const onMove = (event: PointerEvent) => {
       if (event.pointerType !== "mouse") return;
       quickX.current?.(event.clientX - 2);
       quickY.current?.(event.clientY - 2);
+      setPointerContext(event.target);
       pointer.dataset.visible = "true";
       if (!isTextContext(event.target as Element)) setStateSafe(stateRef.current === "press" ? "press" : resolveState(event.target));
     };
     const onEnter = (event: PointerEvent) => { if (event.pointerType === "mouse") pointer.dataset.visible = "true"; };
-    const onLeave = () => { pointer.dataset.visible = "false"; setStateSafe("idle"); };
+    const onLeave = () => { pointer.dataset.visible = "false"; pointer.dataset.context = "default"; setStateSafe("idle"); };
     const onDown = (event: PointerEvent) => { if (event.pointerType === "mouse") setStateSafe(resolveState(event.target) === "disabled" ? "disabled" : "press"); };
     const onUp = () => setStateSafe("idle");
     const onOver = (event: PointerEvent) => { if (event.pointerType === "mouse" && stateRef.current !== "press") setStateSafe(resolveState(event.target)); };
