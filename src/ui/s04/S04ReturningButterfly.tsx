@@ -262,7 +262,7 @@ export function S04ReturningButterfly({
 
   return (
     <>
-    <div ref={flightRootRef} className="s04-butterfly-root" data-phase={phase}>
+    <div ref={flightRootRef} className="s04-butterfly-root" data-phase={phase} data-scene-settled={sceneSettled ? "true" : "false"}>
     <button
       ref={butterflyRef}
       type="button"

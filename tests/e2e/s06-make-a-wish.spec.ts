@@ -9,8 +9,12 @@ async function gotoS06(page: Page, customized = false) {
   await expect(page.getByTestId("s02-scene")).toBeVisible({ timeout: 8000 });
   await page.getByRole("button", { name: "Open", exact: true }).click();
   await expect(page.getByTestId("s03-scene")).toBeVisible();
+  for (const name of ["Buka bintang kertas", "Buka bunga kertas", "Buka hati kertas", "Putar token ulang tahun", "Buka party popper", "Tarik pita kertas"]) await page.getByRole("button", { name, exact: true }).click();
   await page.getByRole("button", { name: "Lanjut", exact: true }).click();
   await expect(page.getByTestId("s04-scene")).toBeVisible();
+  await page.getByTestId("s04-scene").waitFor();
+  await expect(page.getByTestId("s04-scene")).toHaveAttribute("data-visual-phase", "stable", { timeout: 6000 });
+  await page.getByRole("button", { name: "Sentuh kupu-kupu untuk melihatnya terbang" }).press("Enter");
   await page.getByRole("button", { name: "Lanjut", exact: true }).click();
   await expect(page.getByTestId("s05-scene")).toBeVisible();
   if (customized) {
@@ -48,21 +52,24 @@ test.describe("S06 Make a Wish", () => {
     await expect(page.getByTestId("s06-scene")).toHaveAttribute("data-wish-phase", "ready");
     await control.focus();
     await page.keyboard.press("Enter");
-    await expect(page.getByTestId("s06-scene")).toHaveAttribute("data-wish-phase", "extinguished");
-    await control.click({ force: true });
+    await expect(page.getByTestId("s06-scene")).toHaveAttribute("data-wish-phase", "extinguished", { timeout: 5000 });
     await expect(page.getByTestId("s06-continue")).toBeEnabled();
     await expect(page.getByTestId("s06-continue")).toHaveCSS("opacity", "1");
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
     await page.screenshot({ path: path.join(SCREENSHOT_DIR, "s06-mobile-extinguished-390x844.png"), fullPage: true });
     await page.getByTestId("s06-continue").click();
-    await expect(page.getByTestId("runtime-boundary")).toContainText("S07");
+    await expect(page.getByTestId("s07-scene")).toBeVisible({ timeout: 8000 });
   });
 
   test("renders a balanced desktop completion state", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await gotoS06(page, true);
     await page.screenshot({ path: path.join(SCREENSHOT_DIR, "s06-desktop-initial-1440x900.png"), fullPage: true });
-    await page.getByTestId("s06-wish-control").click();
+    const control = page.getByTestId("s06-wish-control");
+    await control.hover();
+    await page.mouse.down();
+    await page.waitForTimeout(2200);
+    await page.mouse.up();
     await expect(page.getByTestId("s06-continue")).toBeEnabled();
     await expect(page.getByTestId("s06-continue")).toHaveCSS("opacity", "1");
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
@@ -73,7 +80,7 @@ test.describe("S06 Make a Wish", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await gotoS06(page);
     await expect(page.getByTestId("s06-scene")).toHaveAttribute("data-reduced-motion", "true");
-    await page.getByTestId("s06-wish-control").click();
+    await page.getByTestId("s06-wish-control").press("Enter");
     await expect(page.getByTestId("s06-continue")).toBeEnabled();
   });
 });
