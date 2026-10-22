@@ -55,10 +55,11 @@ describe("S08 Final Birthday Moment", () => {
     expect(S08_CONTENT.status).toBe("CONTENT_PENDING");
   });
 
-  it("keeps the optional arm genuinely discoverable and gives End a real local state", () => {
+  it("exposes the unfinished ending and guarded continuation", () => {
     const source = readFileSync(path.resolve("src/ui/s08/S08FinalBirthdayMoment.tsx"), "utf8");
-    expect(source).toContain("Temukan lapisan lain");
-    expect(source).toContain('data-testid="s08-ended"');
-    expect(source).not.toContain("window.scrollTo");
+    expect(source).toContain("Lanjut ke S09");
+    expect(source).toContain("Tandai selesai");
+    expect(source).toContain("COMMIT_HIDDEN_PORTAL");
+    expect(source).toContain("window.scrollTo");
   });
 });

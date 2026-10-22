@@ -13,6 +13,7 @@ import { S09HiddenDiscovery } from "../s09/S09HiddenDiscovery";
 import { S10Vault } from "../s10/S10Vault";
 import { S11PhysicalLetter } from "../s11/S11PhysicalLetter";
 import { S12FinalLetter } from "../s12/S12FinalLetter";
+import { TheaterCurtainTransition } from "./TheaterCurtainTransition";
 
 function RuntimeBoundary({ scene }: { scene: string }) {
   return (
@@ -48,35 +49,36 @@ export function scenePresentationKind(scene: string): ScenePresentation {
 
 export function ExperienceShell() {
   const scene = useExperienceStore((state) => state.scene);
-
+  let presentation;
   switch (scenePresentationKind(scene)) {
     case "s01":
-      return <S01Prelude />;
+      presentation = <S01Prelude />; break;
     case "s02":
-      return <S02Invitation />;
+      presentation = <S02Invitation />; break;
     case "s03":
-      return <S03BirthdayReveal />;
+      presentation = <S03BirthdayReveal />; break;
     case "s04":
-      return <S04Portrait />;
+      presentation = <S04Portrait />; break;
     case "s05":
-      return <S05CakeStudio />;
+      presentation = <S05CakeStudio />; break;
     case "s06":
-      return <S06MakeAWish />;
+      presentation = <S06MakeAWish />; break;
     case "s07":
-      return <S07BirthdayLetter />;
+      presentation = <S07BirthdayLetter />; break;
     case "s08":
-      return <S08FinalBirthdayMoment />;
+      presentation = <S08FinalBirthdayMoment />; break;
     case "s09":
-      return <S09HiddenDiscovery />;
+      presentation = <S09HiddenDiscovery />; break;
     case "s10":
-      return <S10Vault />;
+      presentation = <S10Vault />; break;
     case "s11":
-      return <S11PhysicalLetter />;
+      presentation = <S11PhysicalLetter />; break;
     case "s12":
-      return <S12FinalLetter />;
+      presentation = <S12FinalLetter />; break;
     default:
       // No unimplemented or unexpected scene may masquerade as a production renderer.
-      return <RuntimeBoundary scene={scene} />;
+      presentation = <RuntimeBoundary scene={scene} />;
   }
+  return <>{presentation}<TheaterCurtainTransition /></>;
 }
 

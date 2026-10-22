@@ -189,6 +189,14 @@ export function S07BirthdayLetter({ letterVariant = "default", customLetter }: S
       .to(paperRef.current, { y: Math.min(164, window.innerHeight * .21), rotation: 2.45, duration: .18, ease: "sine.inOut" });
   }, [phase, prefersReducedMotion]);
 
+  useEffect(() => {
+    const button = sceneRef.current?.querySelector<HTMLButtonElement>(".s07-release-handle");
+    if (!button) return;
+    const releaseOnClick = () => completeRelease();
+    button.addEventListener("click", releaseOnClick);
+    return () => button.removeEventListener("click", releaseOnClick);
+  }, [completeRelease]);
+
   const handleReleaseDown = (event: React.PointerEvent<HTMLButtonElement>) => {
     if (phase !== "release-ready" || transitionActive) return;
     try { event.currentTarget.setPointerCapture(event.pointerId); } catch { /* synthetic or interrupted pointer */ }

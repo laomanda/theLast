@@ -21,9 +21,7 @@ async function gotoS09(page: Page) {
   if (await openLetter.isVisible().catch(() => false)) await openLetter.click();
   await expect(page.getByTestId("s07-continue")).toBeEnabled({ timeout: 8_000 });
   await page.getByTestId("s07-continue").click();
-  await page.getByTestId("s08-complete").click();
-  await page.getByTestId("s08-discover").click();
-  await page.getByTestId("s08-portal").focus();
+  await page.getByTestId("s08-next").focus();
   await page.keyboard.press("Enter");
   await expect(page.getByTestId("s09-scene")).toBeVisible({ timeout: 8_000 });
   await expect(page.getByTestId("s09-scene")).toHaveAttribute("data-settled", "true", { timeout: 3_000 });

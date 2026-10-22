@@ -39,9 +39,7 @@ async function gotoS12(page: Page) {
   if (await birthdayLetter.count()) await birthdayLetter.click();
   await expect(page.getByTestId("s07-continue")).toBeEnabled({ timeout: 8_000 });
   await page.getByTestId("s07-continue").click();
-  await page.getByTestId("s08-complete").click();
-  await page.getByTestId("s08-discover").click();
-  await page.getByTestId("s08-portal").focus();
+  await page.getByTestId("s08-next").focus();
   await page.keyboard.press("Enter");
   await page.getByTestId("s09-continue").click();
   await expect(page.getByTestId("s10-scene")).toHaveAttribute("data-vault-status", /ready|pinRejected/, { timeout: 20_000 });

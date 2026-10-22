@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 import gsap from "gsap";
+import { curtainTransitionController } from "../../runtime/curtain-transition-controller";
 import { runtimeTransitionCoordinator } from "../../runtime/transition-coordinator";
 import { experienceRuntime, useExperienceStore } from "../../state/experience-store";
 import { usePrefersReducedMotion } from "../s01/S01Prelude";
@@ -64,17 +65,33 @@ export function S09HiddenDiscovery() {
 
   useLayoutEffect(() => {
     if (!sceneRef.current) return;
+    const heldByCurtain = curtainTransitionController.isHolding("S09");
     if (reduced) {
       gsap.set([layerRef.current, surfaceRef.current].filter(Boolean), { clearProps: "all" });
+      curtainTransitionController.markReady("S09");
       return;
     }
+    let stopWaiting: () => void = () => undefined;
     const context = gsap.context(() => {
-      timelineRef.current = gsap.timeline({ defaults: { ease: "power3.out" } })
-        .fromTo(layerRef.current, { opacity: 0, yPercent: 8, scale: 1.018 }, { opacity: 1, yPercent: 0, scale: 1, duration: 0.62, clearProps: "transform,opacity" })
-        .fromTo(".s09-loop-art", { opacity: 0, rotate: -7, scale: 1.08 }, { opacity: 1, rotate: 0, scale: 1, duration: 0.7, clearProps: "transform,opacity" }, 0.08)
-        .call(() => setSettled(true));
+      const loopArt = sceneRef.current?.querySelector<HTMLElement>(".s09-loop-art");
+      const loopTargets = loopArt ? [loopArt] : [];
+      const playEntrance = () => {
+        timelineRef.current = gsap.timeline({ defaults: { ease: "power3.out" } })
+          .to(layerRef.current, { opacity: 1, yPercent: 0, scale: 1, duration: 0.62, clearProps: "transform,opacity" })
+          .to(loopTargets, { opacity: 1, rotate: 0, scale: 1, duration: 0.7, clearProps: "transform,opacity" }, 0.08)
+          .call(() => setSettled(true));
+      };
+
+      gsap.set(layerRef.current, { opacity: 0, yPercent: 8, scale: 1.018 });
+      gsap.set(loopTargets, { opacity: 0, rotate: -7, scale: 1.08 });
+      if (heldByCurtain) stopWaiting = curtainTransitionController.onReveal("S09", playEntrance);
+      else playEntrance();
     }, sceneRef);
-    return () => context.revert();
+    curtainTransitionController.markReady("S09");
+    return () => {
+      stopWaiting();
+      context.revert();
+    };
   }, [reduced]);
 
   useEffect(() => runtimeTransitionCoordinator.register("HIDDEN_SPACE_READY", async (_event, target, signal) => {
