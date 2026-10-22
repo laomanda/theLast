@@ -107,6 +107,7 @@ export type RuntimeEvent =
   | { type: "ARM_HIDDEN_PORTAL" }
   | { type: "COMMIT_HIDDEN_PORTAL" }
   | { type: "HIDDEN_SPACE_READY" }
+  | { type: "BACK_TO_S09" }
   | { type: "VAULT_READY" }
   | { type: "SUBMIT_VAULT_PIN"; pin: string }
   | { type: "BEGIN_VAULT_OPENING" }
@@ -300,6 +301,7 @@ function snapshotRuntimeEventUnsafe(input: unknown): RuntimeEvent | null {
     case "ARM_HIDDEN_PORTAL":
     case "COMMIT_HIDDEN_PORTAL":
     case "HIDDEN_SPACE_READY":
+    case "BACK_TO_S09":
     case "VAULT_READY":
     case "BEGIN_VAULT_OPENING":
     case "COMPLETE_VAULT_OPENING":

@@ -33,5 +33,7 @@ describe("S10 Quiet Keepsake Vault", () => {
     expect(source).toContain('data-renderer-mode={fallback ? "fallback"');
     expect(source).toContain("if (fallback) setOpened(true)");
     expect(source).toContain("Representasi sederhana Vault");
+    expect(source).toContain('type: "BACK_TO_S09"');
+    expect(source).toContain('data-testid="s10-back"');
   });
 });

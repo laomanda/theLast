@@ -25,6 +25,7 @@ export const CANONICAL_TRANSITION_GRAPH: readonly CanonicalSceneEdge[] = [
   { from: "S07", to: "S08", event: "CONTINUE" },
   { from: "S08", to: "S09", event: "COMMIT_HIDDEN_PORTAL" },
   { from: "S09", to: "S10", event: "HIDDEN_SPACE_READY" },
+  { from: "S10", to: "S09", event: "BACK_TO_S09" },
   { from: "S10", to: "S11", event: "COMPLETE_VAULT_OPENING" },
   { from: "S11", to: "S12", event: "OPEN_LETTER" },
 ] as const;
@@ -134,6 +135,13 @@ export function canHandleEvent(state: ExperienceState, event: RuntimeEvent): Gua
     return state.scene === "S09" && state.hiddenPortal === "committed"
       ? target ? { accepted: true, target } : reject("ILLEGAL_SCENE_EDGE")
       : reject("HIDDEN_PORTAL_NOT_COMMITTED");
+  }
+
+  if (event.type === "BACK_TO_S09") {
+    const target = canonicalTarget(state.scene, event.type);
+    return state.scene === "S10" && state.hiddenPortal === "committed"
+      ? target ? { accepted: true, target } : reject("ILLEGAL_SCENE_EDGE")
+      : reject("ILLEGAL_SCENE_EDGE");
   }
 
   if (event.type === "VAULT_READY") {

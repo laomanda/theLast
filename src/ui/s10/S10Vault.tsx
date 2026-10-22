@@ -269,6 +269,15 @@ export function S10Vault() {
     if (!opened) return;
     await experienceRuntime.dispatch({ type: "COMPLETE_VAULT_OPENING" });
   };
+  const returnToDiscovery = async () => {
+    if (submissionPendingRef.current || isOpening) return;
+    submissionPendingRef.current = true;
+    try {
+      await experienceRuntime.dispatch({ type: "BACK_TO_S09" });
+    } finally {
+      submissionPendingRef.current = false;
+    }
+  };
   const isOpening = vaultStatus === "doorOpening";
   const isReady = ["ready", "pinRejected", "pinAccepted", "doorOpening"].includes(vaultStatus);
 
@@ -286,6 +295,7 @@ export function S10Vault() {
         <p className="s10-intro">Kode ini hanya sebuah tanda. Tidak ada yang perlu diburu.</p>
         <div className="s10-status" aria-live="polite">{isOpening && !opened ? (fallback ? "Mode sederhana sedang membuka ruang surat..." : "Kuncinya bergerak...") : opened ? (fallback ? "Ruang surat terlihat dalam mode sederhana." : "Pintunya terbuka. Suratnya menunggu untuk dipilih.") : isReady ? "Ruangnya siap." : "Ruangnya sedang disiapkan."}</div>
         {!opened ? <PinControl pin={pin} setPin={setPin} disabled={!isReady || isOpening} onSubmit={handleSubmit} /> : <button type="button" className="s10-letter-action" data-testid="s10-letter-action" onClick={continueToLetterBoundary}>Pilih suratnya</button>}
+        {!isOpening ? <button type="button" className="s10-back-action" data-testid="s10-back" onClick={returnToDiscovery}>← Kembali ke S09</button> : null}
         {error ? <p className="s10-error" role="alert">{error}</p> : null}
         {invalidAttempts > 0 && !opened ? <p className="s10-attempts">Masih ada waktu untuk mencoba lagi.</p> : null}
         {fallback ? <p className="s10-fallback-note">Mode visual sederhana aktif; semua langkah tetap dapat dilakukan.</p> : null}

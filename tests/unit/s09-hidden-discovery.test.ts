@@ -22,13 +22,15 @@ describe("S09 Hidden Discovery", () => {
     expect(await runtime.dispatch({ type: "COMMIT_HIDDEN_PORTAL" })).toMatchObject({ status: "committed", target: "S09" });
     expect(await runtime.dispatch({ type: "HIDDEN_SPACE_READY" })).toMatchObject({ status: "committed", target: "S10" });
   });
-  it("implements a bounded gesture gate with cancellation, keyboard access, and the approved Offset Loop", () => {
+  it("implements an explicit three-stage descent with a separate final handoff", () => {
     const source = readFileSync(path.resolve("src/ui/s09/S09HiddenDiscovery.tsx"), "utf8");
-    expect(source).toContain("COMMIT_PROGRESS = 0.62");
-    expect(source).toContain("onPointerCancel");
-    expect(source).toContain("onKeyDown");
-    expect(source).toContain("offset-loop-open.svg");
+    expect(source).toContain('type DepthPhase = "shore" | "descending" | "deep" | "handoff"');
+    expect(source).toContain("Buka lapisan berikutnya");
+    expect(source).toContain("Temukan lapisan berikutnya");
+    expect(source).toContain("beginDescent");
     expect(source).toContain('type: "HIDDEN_SPACE_READY"');
     expect(source).not.toContain("PASSIVE_SCROLL");
+    expect(source).not.toContain("<svg");
+    expect(source).not.toContain("onPointerMove");
   });
 });

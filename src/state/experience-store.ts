@@ -133,6 +133,7 @@ function reduceAuthorizedEvent(
   if (event.type === "HIDDEN_SPACE_READY") {
     return { ...state, scene: target ?? state.scene, vault: { ...state.vault, status: "loading" } };
   }
+  if (event.type === "BACK_TO_S09") return { ...state, scene: target ?? state.scene };
   if (event.type === "VAULT_READY") {
     return { ...state, vault: { ...state.vault, status: "ready" } };
   }
