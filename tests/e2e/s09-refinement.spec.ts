@@ -83,4 +83,26 @@ test.describe("S09 beneath the surface", () => {
     await page.getByTestId("s09-continue").dblclick();
     await expect(page.getByTestId("s10-scene")).toBeVisible({ timeout: 8000 });
   });
+
+  test("responds to cursor movement with subtle displacement and settles when stationary", async ({ page }) => {
+    test.setTimeout(90_000);
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await gotoS09(page);
+
+    const star = page.locator(".s09-art-star-shore");
+    await expect(star).toBeVisible();
+
+    await page.mouse.move(1200, 200);
+    await page.waitForTimeout(800);
+
+    const transformMoved = await star.evaluate((el) => window.getComputedStyle(el).transform);
+    expect(transformMoved).not.toBe("none");
+
+    // When mouse is stationary, artwork settles and remains still
+    await page.waitForTimeout(1600);
+    const settled1 = await star.evaluate((el) => window.getComputedStyle(el).transform);
+    await page.waitForTimeout(500);
+    const settled2 = await star.evaluate((el) => window.getComputedStyle(el).transform);
+    expect(settled1).toBe(settled2);
+  });
 });

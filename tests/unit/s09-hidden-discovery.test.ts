@@ -26,11 +26,11 @@ describe("S09 Hidden Discovery", () => {
     const source = readFileSync(path.resolve("src/ui/s09/S09HiddenDiscovery.tsx"), "utf8");
     expect(source).toContain('type DepthPhase = "shore" | "descending" | "deep" | "handoff"');
     expect(source).toContain("Buka lapisan berikutnya");
-    expect(source).toContain("Temukan lapisan berikutnya");
+    expect(source).toContain("Temukan yang tersimpan");
     expect(source).toContain("beginDescent");
     expect(source).toContain('type: "HIDDEN_SPACE_READY"');
     expect(source).not.toContain("PASSIVE_SCROLL");
-    expect(source).not.toContain("<svg");
+    expect(source).toContain('className="s09-arrival-art"');
     expect(source).not.toContain("onPointerMove");
   });
 });
